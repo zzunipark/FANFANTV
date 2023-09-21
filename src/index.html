@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FANFANTV - 3반 짤 관리 시스템</title>
+    <link rel="stylesheet" type="text/css" href="./assets/css/main.css">
+</head>
+
+<body>
+    <noscript>
+        <p>JavaScript가 비활성화되었습니다. FANFANTV를 이용하시려면 JavaScript를 활성화해주세요.</p>
+    </noscript>
+
+    <div id="content" style="display: none;">
+        <div class="login-box">
+            <p class="login-box-title">이메일과 비밀번호를<br>입력해주세요.</p>
+            <form action="#" class="login-box-content">
+                <div class="login-box-content-title">이메일 주소</div>
+                <div class="login-box-content-inputbox">
+                    <input type="email" id="signInEmail" placeholder="test@example.com" required>
+                </div>
+                <div class="errorMessage" id="emailError"></div>
+                <div class="login-box-content-title" style="margin-top: 26px;">비밀번호</div>
+                <div class="login-box-content-inputbox">
+                    <input type="password" id="signInPassword" placeholder="영문, 숫자, 특수문자 포함 8자 이상" required>
+                </div>
+                <div class="errorMessage" id="passwordError"></div>
+                <button class="loginbtn" type="submit" id="signInButton">로그인</button>
+                <div class="agreeTerms">
+                    <input type="checkbox" id="agreeTerms">
+                    <label class="agreeTerms" for="agreeTerms"><a href="./terms-of-service/">이용약관</a> 및 <a
+                            href="./privacy-policy/">개인정보처리방침</a>에
+                        동의합니다.</label>
+                </div>
+                <p id="allErrorMessage" style="margin-top: 10px; color: #ef0000;"></p>
+            </form>
+            <footer>
+                <p align="center">FANFANTV<br><small>fanfantv-publicbeta-#b001</small></p>
+            </footer>
+        </div>
+    </div>
+
+    <script type="module" src="./assets/js/login.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var contentElement = document.getElementById("content");
+            contentElement.style.display = "block";
+        });
+    </script>
+</body>
+
+</html>

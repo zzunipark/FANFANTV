@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../assets/css/dashboard.css">
+    <script type="module" src="../assets/js/dashboard.js" defer></script>
+    <title>FANFANTV - 대시보드</title>
+</head>
+
+<body>
+    <noscript>
+        <p>JavaScript가 비활성화되었습니다. FANFANTV를 이용하시려면 JavaScript를 활성화해주세요.</p>
+    </noscript>
+
+    <div id="content" style="display: none;">
+        <div class="navbar">
+            <p class="logotitle">FANFANTV</p>
+            <div class="navbar-list">
+                <button class="mypage-btn" onclick="window.location.replace('./mypage')">마이페이지</button>
+                <button class="uploadimage-btn" onclick="location.href='./upload-image/'">이미지 업로드하기</button>
+                <button class="logout-btn" id="logoutButton">로그아웃</button>
+            </div>
+        </div>
+        <div class="thumbnail-grid">
+        </div>
+
+        <p style="text-align: center; bottom: 0; position: fixed;"><a href="../privacy-policy/">개인정보처리방침</a> / <a
+                href="../terms-of-service/">서비스
+                이용약관</a>&nbsp;<small>fanfantv-publicbeta-#b001</small></p>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var contentElement = document.getElementById("content");
+            contentElement.style.display = "block";
+        });
+    </script>
+</body>
+
+</html>

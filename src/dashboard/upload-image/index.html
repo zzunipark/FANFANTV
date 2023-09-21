@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../assets/css/upload-image.css">
+    <script type="module" src="../../assets/js/uploadimage.js" defer></script>
+    <title>FANFANTV</title>
+</head>
+
+<body>
+    <noscript>
+        <p>JavaScript가 비활성화되었습니다. FANFANTV를 이용하시려면 JavaScript를 활성화해주세요.</p>
+    </noscript>
+
+    <div id="content" style="display: none;">
+        <div class="fileupload">
+            <p class="fileupload-goback"><a href="../">
+                    < FANFANTV로 돌아가기</a>
+            </p>
+            <p class="fileupload-title">FANFANTV에 기여해주세요!</p>
+            <div class="fileupload-wrap">
+                <input type="file" id="fileInput" accept="image/jpg, image/jpeg, image/png, image/gif">
+                <button class="uploadButton" id="uploadButton">업로드</button>
+                <div class=" preview">
+                    <img id="previewImage" src="#" alt="미리보기">
+                </div>
+            </div>
+            <progress id="uploadProgress" class="uploadProgress" value="0" max="100"></progress>
+            <small>25MB 이하의 .JPG .JPEG .PNG .GIF만 업로드가 가능합니다.</small>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var contentElement = document.getElementById("content");
+            contentElement.style.display = "block";
+        });
+    </script>
+</body>
+
+</html>

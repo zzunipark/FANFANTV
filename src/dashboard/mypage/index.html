@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FANFANTV - 마이페이지</title>
+    <link rel="stylesheet" type="text/css" href="../../assets/css/mypage.css">
+</head>
+
+<body>
+    <noscript>
+        <p>JavaScript가 비활성화되었습니다. FANFANTV를 이용하시려면 JavaScript를 활성화해주세요.</p>
+    </noscript>
+
+    <div id="content" style="display: none;">
+        <div class="mypage-box">
+            <p align="left" style="color: #e50914;">
+                <a href="../" style="color: #e50914; text-decoration: none;">
+                    < 이전 페이지로 이동</a>
+            </p>
+
+            <p class="mypage-box-title" style="margin-bottom: 2px;" id="usernameBox"></p>
+            <p style="margin-top: 0px;">님, 안녕하세요! 오늘 하루는 어떠신가요?</p>
+            <form action="#" class="mypage-box-content">
+                <h2>암호 변경하기</h2>
+                <div class="mypage-box-content-title">현재 사용중인 암호</div>
+                <div class="mypage-box-content-inputbox">
+                    <input type="password" id="currentPassword" placeholder="현재 사용중인 암호를 입력해주세요." required>
+                </div>
+                <div class="errorMessage" id="emailError"></div>
+                <div class="mypage-box-content-title" style="margin-top: 26px;">새로운 암호</div>
+                <div class="mypage-box-content-inputbox">
+                    <input type="password" id="newPassword" placeholder="보안을 위해 추측하기 어려운 암호를 설정해주세요." required>
+                </div>
+                <div class="errorMessage" id="passwordError"></div>
+                <button class="changepwButton" type="submit" id="changepwButton">로그인</button>
+                <p id="allErrorMessage" style="margin-top: 10px; color: #ef0000;"></p>
+            </form>
+            <footer>
+                <p align="center">FANFANTV<br><small>fanfantv-publicbeta-#b001</small></p>
+            </footer>
+        </div>
+    </div>
+
+    <script type="module" src="../../assets/js/mypage.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var contentElement = document.getElementById("content");
+            contentElement.style.display = "block";
+        });
+    </script>
+</body>
+
+</html>

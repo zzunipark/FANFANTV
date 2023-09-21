@@ -1,0 +1,83 @@
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
+* {
+    font-family: Pretendard, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.navbar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background-color: lightgray;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.logotitle {
+    font-size: 19px;
+    margin-left: 20px;
+    font-weight: 500;
+}
+
+.navbar-list {
+    display: flex;
+    flex-direction: row;
+    align-items: space-between;
+}
+
+.uploadimage-btn,
+.logout-btn,
+.mypage-btn {
+    font-size: 18px;
+    font-weight: 600;
+    margin-right: 20px;
+    width: 150px;
+    height: 35px;
+    border-radius: 48px;
+    border: none;
+    background-color: gray;
+    color: white;
+    cursor: pointer;
+}
+
+.thumbnail-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 10px;
+}
+
+.thumbnail {
+    cursor: pointer;
+    width: 200px;
+    height: 300px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.thumbnail img {
+    max-width: 90%;
+    max-height: 90%;
+    width: auto;
+    height: auto;
+    object-fit: cover;
+    position: relative;
+    display: block;
+}
+
+.thumbnail p {
+    margin: 10px 0;
+    font-size: 16px;
+    font-weight: 500;
+    position: relative;
+    text-align: center;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 5px;
+}
