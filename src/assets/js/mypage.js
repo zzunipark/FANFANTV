@@ -18,8 +18,7 @@ const usernameBox = document.getElementById("usernameBox");
 
 let currentPasswordInput = document.getElementById("currentPassword");
 let newPasswordInput = document.getElementById("newPassword");
-const changePasswordBtn = document.getElementById("changepwButton");
-
+const changepwButton = document.getElementById("changepwButton");
 const newPasswordError = document.getElementById("newPasswordError");
 const currentPasswordError = document.getElementById("currentPasswordError");
 
@@ -28,7 +27,9 @@ onAuthStateChanged(auth, (user) => {
     console.log("Logged in.");
     usernameBox.innerHTML = user.email;
 
-    changePasswordBtn.addEventListener("click", () => {
+    changepwButton.addEventListener("submit", (event) => {
+      event.preventDefault();
+
       const currentPassword = currentPasswordInput.value;
       const newPassword = newPasswordInput.value;
 
@@ -42,6 +43,7 @@ onAuthStateChanged(auth, (user) => {
             .then(() => {
               console.log("암호를 성공적으로 변경하였습니다.");
               currentPasswordError.innerHTML = "";
+              firebaselogout();
             })
             .catch((error) => {
               console.error("비밀번호 변경 실패:", error);
@@ -63,9 +65,7 @@ function firebaselogout() {
   signOut(auth)
     .then(() => {
       console.log("logged out");
-      location.href = "../../";
+      location.href = "../";
     })
-    .catch((error) => {
-      console.log("Error Accured");
-    });
+    .catch((error) => {});
 }
