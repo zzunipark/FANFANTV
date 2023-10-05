@@ -11,6 +11,7 @@
     justify-content: space-between;
     background-color: lightgray;
     width: 100%;
+    margin-bottom: 20px;
 }
 
 .logotitle {
@@ -23,18 +24,6 @@
     display: flex;
     flex-direction: row;
     align-items: space-between;
-}
-
-.announcement {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 50px;
-    background-color: #2a9df4;
-    margin-top: 0px;
-    margin-bottom: 20px;
 }
 
 .uploadimage-btn,
