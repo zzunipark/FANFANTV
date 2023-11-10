@@ -20,7 +20,8 @@ export const SubNavbarli = styled.li`
   color: #a5a5a5;
   font-size: 12px;
   line-height: 34px;
-  margin-left: 2vw;
+  margin-left: 10px;
+  cursor: pointer;
 
   &:first-child {
     margin-left: 0;
@@ -55,6 +56,7 @@ export const MainNavbarli = styled.li`
   font-weight: 500;
   margin-left: 2vw;
   opacity: 0.6;
+  cursor: pointer;
 
   &:first-child {
     margin-right: 5px;
@@ -74,7 +76,7 @@ export const MainContainer = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  height: 500px;
+  height: 600px;
   padding: 0 5vw;
   background-color: rgb(27, 27, 27);
   background-image: url(${fanfantvtitlepngPath});
@@ -117,7 +119,7 @@ export const FeatureBox1 = styled.div`
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  height: 150px;
+  height: 175px;
   background-color: rgb(33, 33, 33);
 `;
 
@@ -151,7 +153,7 @@ export const FeatureBox2 = styled.div`
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  height: 150px;
+  height: 175px;
   background-color: rgb(27, 27, 27);
 `;
 
@@ -168,8 +170,8 @@ export const FeatureBox2TitleText = styled.p`
   font-size: 30px;
   color: white;
   font-weight: 600;
-  padding-right: 5vw;
   padding-left: 5vw;
+  padding-right: 5vw;
   text-align: right;
 `;
 
@@ -177,8 +179,8 @@ export const FeatureBox2DescText = styled.p`
   font-size: 18px;
   font-weight: 400;
   color: #fff;
-  padding-right: 5vw;
   padding-left: 5vw;
+  padding-right: 5vw;
   text-align: right;
 `;
 
@@ -187,7 +189,7 @@ export const FeatureBox3 = styled.div`
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  height: 150px;
+  height: 175px;
   background-color: rgb(33, 33, 33);
 `;
 
@@ -218,4 +220,93 @@ export const FeatureBox3DescText = styled.p`
 
 export const SupText = styled.sup`
   font-size: 10px;
+`;
+
+export const SmallText = styled.small`
+  font-size: 12px;
+  color: white;
+`;
+
+export const AdditionalContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  background-color: rgb(27, 27, 27);
+  border-top: 1.5px solid rgb(47, 47, 47);
+  border-bottom: 1.5px solid rgb(47, 47, 47);
+`;
+
+export const AdditonalText = styled.p`
+  font-size: 10px;
+  color: #6e6e73;
+`;
+
+export const FooterContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 130px;
+  background-color: rgb(27, 27, 27);
+  padding: 0 5vw;
+`;
+
+export const FooterBarul = styled.ul`
+  display: flex;
+  margin-top: 20px;
+`;
+
+export const FooterBarli = styled.li`
+  text-decoration: none;
+  color: rgb(130, 130, 130);
+  font-size: 14px;
+  line-height: 34px;
+  font-weight: 200;
+  margin-left: 1vw;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.85;
+  }
+
+  &:first-child {
+    margin-left: 0;
+  }
+`;
+
+export const Footerfanfantvinfocontainer = styled.div`
+  display: flex;
+`;
+
+export const Footerfanfantvinfo = styled.p`
+  font-size: 11px;
+  color: rgb(130, 130, 130);
+  margin-top: 3px;
+`;
+
+export const CopyrightText = styled.p`
+  font-size: 13px;
+  color: rgb(130, 130, 130);
+  margin-top: 6px;
+`;
+
+export const PleaseLoginContainer = styled.div`
+  background-color: rgb(27, 27, 27);
+  height: calc(100vh - 75px);
+  position: fixed;
+  top: 109px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const PleaseLoginTitleText = styled.p`
+  font-size: 40px;
+  color: white;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 120px;
 `;
