@@ -1,5 +1,37 @@
 import styled from "styled-components";
 import fanfantvtitlepngPath from "../assets/images/fanfantvtitle.png";
+import { Link } from "react-router-dom";
+
+export const LinkSubNav = styled(Link)`
+  text-decoration: none;
+  color: #a5a5a5;
+  font-size: 12px;
+  line-height: 34px;
+  margin-left: 10px;
+  cursor: pointer;
+
+  &:first-child {
+    margin-left: 0;
+  }
+`;
+
+export const FooterNav = styled(Link)`
+  text-decoration: none;
+  color: rgb(130, 130, 130);
+  font-size: 14px;
+  line-height: 34px;
+  font-weight: 200;
+  margin-left: 1vw;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.85;
+  }
+
+  &:first-child {
+    margin-left: 0;
+  }
+`;
 
 export const SubNavbar = styled.div`
   display: flex;
@@ -254,24 +286,6 @@ export const FooterContainer = styled.div`
 export const FooterBarul = styled.ul`
   display: flex;
   margin-top: 20px;
-`;
-
-export const FooterBarli = styled.li`
-  text-decoration: none;
-  color: rgb(130, 130, 130);
-  font-size: 14px;
-  line-height: 34px;
-  font-weight: 200;
-  margin-left: 1vw;
-  cursor: pointer;
-
-  &:hover {
-    opacity: 0.85;
-  }
-
-  &:first-child {
-    margin-left: 0;
-  }
 `;
 
 export const Footerfanfantvinfocontainer = styled.div`

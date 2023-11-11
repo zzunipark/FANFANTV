@@ -78,12 +78,10 @@ const LoginPage = () => {
 
   return (
     <s.LoginContainer>
-      <Link to="/">
-        <s.FANFANTVTitle>FANFANTV</s.FANFANTVTitle>
-      </Link>
       <s.LoginBox>
-        <s.LoginBoxTitle>로그인</s.LoginBoxTitle>
-        <s.LoginBoxDesc>FANFANTV 계정으로 로그인</s.LoginBoxDesc>
+        <Link to="/">
+          <s.FANFANTVTitle>FANFANTV</s.FANFANTVTitle>
+        </Link>
         <s.EmailInputBox
           type="email"
           placeholder="이메일 주소"
@@ -98,7 +96,7 @@ const LoginPage = () => {
         ></s.PasswordInputBox>
         <s.ErrorText>{errorText}</s.ErrorText>
         <s.ReminderText>
-          로그인하면 FANFANTV의 이용약관과 개인정보처리방침에 동의한것으로
+          로그인하면 귀하는 당사의 개인정보처리방침과 이용약관에 동의한 것으로
           간주됩니다.
         </s.ReminderText>
         <s.LoginButton onClick={handleLogin}>로그인</s.LoginButton>
@@ -106,6 +104,11 @@ const LoginPage = () => {
           <s.ForgotPasswordText>비밀번호를 잊으셨나요?</s.ForgotPasswordText>
         </Link>
       </s.LoginBox>
+      <s.SignUpBox>
+        <Link to="/signup">
+          <s.SignUpText>아직 회원이 아니신가요?</s.SignUpText>
+        </Link>
+      </s.SignUpBox>
     </s.LoginContainer>
   );
 };

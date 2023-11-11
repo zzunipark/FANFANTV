@@ -25,33 +25,14 @@ export const ForgotPasswordBox = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-  width: 550px;
-  height: 380px;
+  width: 400px;
   background-color: #252525;
   border-radius: 10px;
 `;
 
-export const ForgotPasswordBoxTitle = styled.p`
-  color: #fff;
-  font-size: 30px;
-  font-weight: 400;
-  line-height: 75px;
-  letter-spacing: 1px;
-  margin-top: 20px;
-`;
-
-export const ForgotPasswordBoxDesc = styled.p`
-  color: #a5a5a5;
-  font-size: 20px;
-  font-weight: 400;
-  line-height: 75px;
-  margin-top: 0px;
-  margin-bottom: 0px;
-`;
-
 export const EmailInputBox = styled.input`
-  width: 430px;
-  height: 60px;
+  width: 300px;
+  height: 50px;
   background-color: #2f2f2f;
   border-radius: 5px;
   border: none;
@@ -67,7 +48,7 @@ export const EmailInputBox = styled.input`
   }
 `;
 
-export const DoneText = styled.p`
+export const ErrorText = styled.p`
   color: #a5a5a5;
   font-size: 12px;
   font-weight: 400;
@@ -75,16 +56,17 @@ export const DoneText = styled.p`
 `;
 
 export const FindPasswordButton = styled.button`
-  width: 450px;
-  height: 60px;
+  width: 320px;
+  height: 50px;
   background-color: gray;
   border: none;
   margin-top: 10px;
   font-size: 18px;
   font-weight: 400;
   color: white;
-  border-radius: 50px;
+  border-radius: 3px;
   cursor: pointer;
+  margin-bottom: 25px;
 
   &:focus {
     outline: none;

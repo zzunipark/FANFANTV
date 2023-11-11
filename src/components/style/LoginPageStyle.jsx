@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import fanfantvbackground from "../assets/images/fanfantvtitle.png";
 
 export const LoginContainer = styled.div`
   background-color: rgb(27, 27, 27);
@@ -25,33 +26,25 @@ export const LoginBox = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-  width: 550px;
-  height: 550x;
+  width: 400px;
   background-color: #252525;
   border-radius: 10px;
 `;
 
-export const LoginBoxTitle = styled.p`
-  color: #fff;
-  font-size: 30px;
-  font-weight: 400;
-  line-height: 75px;
-  letter-spacing: 1px;
-  margin-top: 20px;
-`;
-
-export const LoginBoxDesc = styled.p`
-  color: #a5a5a5;
-  font-size: 20px;
-  font-weight: 400;
-  line-height: 75px;
-  margin-top: 0px;
-  margin-bottom: 0px;
+export const SignUpBox = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 400px;
+  height: 50px;
+  background-color: #252525;
+  border-radius: 10px;
+  margin-top: 15px;
 `;
 
 export const EmailInputBox = styled.input`
-  width: 430px;
-  height: 60px;
+  width: 300px;
+  height: 50px;
   background-color: #2f2f2f;
   border-radius: 5px;
   border: none;
@@ -68,8 +61,8 @@ export const EmailInputBox = styled.input`
 `;
 
 export const PasswordInputBox = styled.input`
-  width: 430px;
-  height: 60px;
+  width: 300px;
+  height: 50px;
   background-color: #2f2f2f;
   border-radius: 5px;
   border: none;
@@ -87,21 +80,22 @@ export const PasswordInputBox = styled.input`
 
 export const ReminderText = styled.p`
   color: #a5a5a5;
-  font-size: 12px;
+  font-size: 9px;
   font-weight: 400;
   margin-top: 3px;
+  padding: 0 40px;
 `;
 
 export const LoginButton = styled.button`
-  width: 450px;
-  height: 60px;
-  background-color: gray;
+  width: 320px;
+  height: 50px;
+  background-color: #ff0000;
   border: none;
   margin-top: 10px;
   font-size: 18px;
   font-weight: 400;
   color: white;
-  border-radius: 50px;
+  border-radius: 3px;
   cursor: pointer;
 
   &:focus {
@@ -123,4 +117,12 @@ export const ErrorText = styled.p`
   font-weight: 400;
   margin-top: 10px;
   margin-bottom: 0px;
+`;
+
+export const SignUpText = styled.div`
+  color: #a5a5a5;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 75px;
+  cursor: pointer;
 `;

@@ -43,14 +43,12 @@ const ForgotPasswordPage = () => {
 
   return (
     <s.ForgotPasswordContainer>
-      <Link to="/">
-        <s.FANFANTVTitle>FANFANTV</s.FANFANTVTitle>
-      </Link>
       <s.ForgotPasswordBox>
-        <s.ForgotPasswordBoxTitle>비밀번호 재설정</s.ForgotPasswordBoxTitle>
-        <s.ForgotPasswordBoxDesc>이메일로 재설정</s.ForgotPasswordBoxDesc>
+        <Link to="/">
+          <s.FANFANTVTitle>FANFANTV</s.FANFANTVTitle>
+        </Link>
         <s.EmailInputBox id="email" placeholder="계정과 연동된 이메일 주소" />
-        <s.DoneText
+        <s.ErrorText
           dangerouslySetInnerHTML={{
             __html: errorMessage.replace(/\n/g, "<br />"),
           }}
