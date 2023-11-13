@@ -324,3 +324,87 @@ export const PleaseLoginTitleText = styled.p`
   text-align: center;
   margin-bottom: 120px;
 `;
+
+export const AnnounceContainer = styled.div`
+  display: flex;
+  height: 40px;
+  background-color: #2a9df4;
+  justify-content: center;
+  align-items: center;
+  padding: 0 5vw;
+`;
+
+export const AnnounceText = styled.p`
+  font-size: 14px;
+  color: white;
+  text-align: center;
+`;
+
+export const GalleryContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+  justify-content: center;
+  align-items: flex-start;
+  background-color: rgb(33, 33, 33);
+  padding: 30px 5vw;
+`;
+
+export const GalleryImageContainer = styled.div`
+  position: relative;
+  text-align: center;
+
+  img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  &:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease-in-out;
+  }
+`;
+
+export const UploadedByText = styled.p`
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 12px;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 0 0 5px 5px;
+  width: 100%;
+`;
+
+export const ModalContainer = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+`;
+
+export const ModalContent = styled.div`
+  max-width: 50%;
+  max-height: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+
+  img {
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+`;
