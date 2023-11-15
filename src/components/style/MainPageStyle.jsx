@@ -408,3 +408,51 @@ export const ModalContent = styled.div`
     object-fit: contain;
   }
 `;
+
+export const UploadImageContainer = styled.div`
+  background-color: rgb(27, 27, 27);
+  height: calc(100vh - 75px);
+  position: fixed;
+  top: 109px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const UploadImageBox = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 400px;
+  background-color: rgb(33, 33, 33);
+  border-radius: 10px;
+  margin-bottom: 150px;
+`;
+
+export const UploadImageTitle = styled.p`
+  color: #fff;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 75px;
+`;
+
+export const UploadImageInputBox = styled.input`
+  width: 300px;
+  height: 50px;
+  background-color: #2f2f2f;
+  border-radius: 5px;
+  border: none;
+  margin-top: 0px;
+  padding-left: 20px;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 75px;
+  color: white;
+
+  &:focus {
+    outline: none;
+  }
+`;

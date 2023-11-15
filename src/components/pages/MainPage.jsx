@@ -140,6 +140,9 @@ const MainPage = () => {
               <s.MainNavbarli className={currentPage === "gallery" ? "active" : ""} onClick={() => setCurrentPage("gallery")}>
                 갤러리
               </s.MainNavbarli>
+              <s.MainNavbarli className={currentPage === "upload" ? "active" : ""} onClick={() => setCurrentPage("upload")}>
+                이미지 업로드
+              </s.MainNavbarli>
             </s.MainNavbarul>
           </s.MainNavbar>
           <s.MainContainer>
@@ -222,6 +225,9 @@ const MainPage = () => {
               <s.MainNavbarli className={currentPage === "gallery" ? "active" : ""} onClick={() => setCurrentPage("gallery")}>
                 갤러리
               </s.MainNavbarli>
+              <s.MainNavbarli className={currentPage === "upload" ? "active" : ""} onClick={() => setCurrentPage("upload")}>
+                이미지 업로드
+              </s.MainNavbarli>
             </s.MainNavbarul>
           </s.MainNavbar>
           {isLoggedIn === false && (
@@ -282,6 +288,9 @@ const MainPage = () => {
               <s.MainNavbarli className={currentPage === "gallery" ? "active" : ""} onClick={() => setCurrentPage("gallery")}>
                 갤러리
               </s.MainNavbarli>
+              <s.MainNavbarli className={currentPage === "upload" ? "active" : ""} onClick={() => setCurrentPage("upload")}>
+                이미지 업로드
+              </s.MainNavbarli>
             </s.MainNavbarul>
           </s.MainNavbar>
           {isLoggedIn === false && (
@@ -336,6 +345,69 @@ const MainPage = () => {
               </s.FooterContainer>
             </div>
           )}
+        </div>
+      )}
+      {currentPage === "upload" && (
+        <div className="upload">
+          <s.SubNavbar>
+            <s.SubNavbarul>
+              {isLoggedIn ? <s.SubNavbarli onClick={handleLogout}>로그아웃</s.SubNavbarli> : <s.LinkSubNav to="/login">로그인</s.LinkSubNav>}
+              {isLoggedIn ? null : <s.LinkSubNav to="/signup">회원가입</s.LinkSubNav>}
+              <s.SubNavbarli>
+                <s.LinkSubNav to="/notice">공지사항</s.LinkSubNav>
+              </s.SubNavbarli>
+            </s.SubNavbarul>
+          </s.SubNavbar>
+          <s.MainNavbar>
+            <s.MainNavbarLogoText>FANFANTV</s.MainNavbarLogoText>
+            <s.MainNavbarul>
+              <s.MainNavbarli className={currentPage === "home" ? "active" : ""} onClick={() => setCurrentPage("home")}>
+                홈
+              </s.MainNavbarli>
+              <s.MainNavbarli className={currentPage === "my" ? "active" : ""} onClick={() => setCurrentPage("my")}>
+                MY
+              </s.MainNavbarli>
+              <s.MainNavbarli className={currentPage === "gallery" ? "active" : ""} onClick={() => setCurrentPage("gallery")}>
+                갤러리
+              </s.MainNavbarli>
+              <s.MainNavbarli className={currentPage === "upload" ? "active" : ""} onClick={() => setCurrentPage("upload")}>
+                이미지 업로드
+              </s.MainNavbarli>
+            </s.MainNavbarul>
+          </s.MainNavbar>
+          {isLoggedIn === false && (
+            <div className="pleaselogin">
+              <s.PleaseLoginContainer>
+                <s.PleaseLoginTitleText>
+                  회원 전용 페이지입니다.
+                  <br />
+                  계속하시려면 로그인 해주세요.
+                </s.PleaseLoginTitleText>
+              </s.PleaseLoginContainer>
+            </div>
+          )}
+          {isLoggedIn === true && (
+            <div className="loggedin">
+              <s.PleaseLoginContainer>
+                <s.PleaseLoginTitleText>로그인 되었으나 준비중인 페이지입니다.</s.PleaseLoginTitleText>
+              </s.PleaseLoginContainer>
+            </div>
+          )}
+          <s.FooterContainer>
+            <s.FooterBarul>
+              <s.FooterNav to="/terms-of-service">이용약관</s.FooterNav>
+              <s.FooterNav to="/privacy-policy">개인정보처리방침</s.FooterNav>
+              <s.FooterNav to="/refuse-collect-email">이메일무단수집거부</s.FooterNav>
+            </s.FooterBarul>
+            <s.Footerfanfantvinfocontainer>
+              <s.Footerfanfantvinfo>
+                FANFANTV | 전자우편주소 : admin@fanfantv.online
+                <br />
+                호스팅서비스제공자 : 아마존웹서비시즈코리아 유한회사
+              </s.Footerfanfantvinfo>
+            </s.Footerfanfantvinfocontainer>
+            <s.CopyrightText>© 2023 FANFANTV. All rights reserved.</s.CopyrightText>
+          </s.FooterContainer>
         </div>
       )}
     </>
