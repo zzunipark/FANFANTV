@@ -327,7 +327,7 @@ export const PleaseLoginTitleText = styled.p`
 
 export const AnnounceContainer = styled.div`
   display: flex;
-  height: 40px;
+  height: 50px;
   background-color: #2a9df4;
   justify-content: center;
   align-items: center;
@@ -338,6 +338,13 @@ export const AnnounceText = styled.p`
   font-size: 14px;
   color: white;
   text-align: center;
+  line-height: 20px;
+`;
+
+export const AnnounceHyperlink = styled.a`
+  color: white;
+  text-decoration: underline;
+  font-weight: 600;
 `;
 
 export const GalleryContainer = styled.div`

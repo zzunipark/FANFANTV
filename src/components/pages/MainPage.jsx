@@ -145,6 +145,11 @@ const MainPage = () => {
               </s.MainNavbarli>
             </s.MainNavbarul>
           </s.MainNavbar>
+          <s.AnnounceContainer>
+            <s.AnnounceText>
+              현재 새 버전의 웹사이트를 사용중입니다. 일부 기능이 동작하지 않을 수 있으며, 페이지가 완전하지 않을 수 있습니다. 이전 버전의 웹사이트로 돌아가려면 <s.AnnounceHyperlink href="https://legacy.fanfantv.online">여기</s.AnnounceHyperlink>를 클릭해주세요.
+            </s.AnnounceText>
+          </s.AnnounceContainer>
           <s.MainContainer>
             <s.TitleText>
               이제, 새로워진 <s.fanfantvtext>FANFANTV</s.fanfantvtext>에서 <s.textimpact>ON</s.textimpact>.
