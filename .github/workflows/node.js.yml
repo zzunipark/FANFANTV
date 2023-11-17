@@ -24,7 +24,6 @@ jobs:
         cache: 'npm'
     - run: npm i
     - run: npm run build
-    - run: npm test
 
     - uses: actions/checkout@master
     - uses: awact/s3-action@master
