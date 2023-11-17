@@ -1,5 +1,11 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
-import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut, browserSessionPersistence } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-auth.js";
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  onAuthStateChanged,
+  signOut,
+  browserSessionPersistence,
+} from "https://www.gstatic.com/firebasejs/10.0.0/firebase-auth.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBuNouLpDM-yluSDCzzYn-XKJZgQglMpGA",
@@ -13,20 +19,19 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
-
-const emailError = document.getElementById("emailError");
-const passwordError = document.getElementById("passwordError");
+const agreeTermsCheckbox = document.getElementById("agreeterms");
+const errorMessageDiv = document.getElementById("errorMessageDiv");
 
 function handleSubmit(event) {
   event.preventDefault();
 
-  const agreeTermsCheckbox = document.getElementById("agreeTerms");
+  const agreeTermsCheckbox = document.getElementById("agreeterms");
   const signInEmail = document.getElementById("signInEmail").value;
   const signInPassword = document.getElementById("signInPassword").value;
-  const allErrorMessage = document.getElementById("allErrorMessage");
+  const errorMessageParagraph = document.getElementById("errorMessageParagraph");
 
   if (!agreeTermsCheckbox.checked) {
-    allErrorMessage.innerHTML = "오류: 로그인하려면 이용약관에 동의해야 합니다.";
+    errorMessageParagraph.innerHTML = "오류: 로그인하려면 이용약관에 동의해야 합니다.";
     return;
   }
 
@@ -34,27 +39,23 @@ function handleSubmit(event) {
     .then(function (result) {
       var user = result.user;
       console.log("로그인된 사용자:", user);
-      location.href = "./dashboard";
+      location.href = "../dashboard";
     })
     .catch(function (error) {
       var errorCode = error.code;
-
-      allErrorMessage.innerHTML = "";
+      var errorMessage = error.message;
 
       if (errorCode === "auth/invalid-email") {
-        emailError.innerHTML = "올바른 이메일을 입력해주세요.";
+        errorMessageParagraph.innerHTML = "오류 : 이메일이 올바르지 않습니다.";
       } else if (errorCode === "auth/wrong-password") {
-        passwordError.innerHTML = "올바른 암호를 입력해주세요.";
+        errorMessageParagraph.innerHTML = "오류 : 암호가 올바르지 않습니다.";
       } else if (errorCode === "auth/user-not-found") {
-        emailError.innerHTML = "올바른 이메일을 입력해주세요.";
+        errorMessageParagraph.innerHTML = "오류 : 사용자 계정이 존재하지 않습니다.";
       } else if (errorCode === "auth/missing-password") {
-        passwordError.innerHTML = "올바른 암호를 입력해주세요.";
+        errorMessageParagraph.innerHTML = "오류 : 암호를 입력하지 않았습니다.";
+      } else {
+        errorMessageParagraph.innerHTML = "오류 : " + errorMessage;
       }
-
-      setTimeout(() => {
-        emailError.innerHTML = "";
-        passwordError.innerHTML = "";
-      }, 2000);
     });
 }
 
@@ -63,8 +64,12 @@ submitButton.addEventListener("click", handleSubmit);
 
 onAuthStateChanged(auth, (user) => {
   if (user) {
-    window.location.replace("./dashboard");
+    const uid = user.uid;
+    errorMessageParagraph.innerHTML = "로그인 된 사용자입니다.<br>잠시 후 자동으로 회원 전용 페이지로 이동합니다.";
+    setTimeout(() => {
+      window.location.replace("../dashboard");
+    }, 2000);
   } else {
-    console.log("Not Logged In.");
+    console.log("Not Logged in.");
   }
 });

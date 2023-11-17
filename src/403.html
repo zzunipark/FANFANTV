@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+
+<html lang="kr">
+
+<head>
+    <meta charset="utf-8">
+    <title>403 - FANFANTV</title>
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="./assets/css/errorpage.css">
+    <script src="https://kit.fontawesome.com/31b13c04b4.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" />
+</head>
+
+<body onload="getDeviceInfo()">
+    <h1 style="margin-left: 170px; font-size: 65px; font-weight: 280; margin-bottom: 0px;">Error 403</h1>
+    <h4 style="margin-left: 173px; font-size: 25px; font-weight: 250; margin-top: 5px; margin-bottom: 0px;"><span
+            style="color: gray;">Forbidden</span></h4>
+
+    <h5 style="margin-left: 170px; font-size: 30px; font-weight: 380; margin-bottom: 8px; margin-top: 0px;"><br>무엇이 문제인가요?</h5>
+    <h4 style="margin-left: 173px; font-size: 17px; font-weight: 250; margin-top: 0px;">요청하신 페이지에 접근할 권한이 없습니다.<br>이는 요청한 페이지에 액세스할 수 있는 권한이 없음을 의미합니다.</h4>
+
+    <h5 style="margin-left: 170px; font-size: 30px; font-weight: 380; margin-bottom: 8px; margin-top: 10px;">어떻게 해야하나요?</h5>
+    <h4 style="margin-left: 173px; font-size: 17px; font-weight: 250; margin-top: 0px;">만약 액세스가 있음에도 접근이 불가능한 경우, <a href="mailto:admin@fanfantv.online">여기</a>를 눌러 사이트 관리자에게 문의하십시오.<br><span id="counter">10</span>초 후에 자동으로 이전 페이지로 이동합니다.</h4>
+
+    <hr style="margin-left: 170px; margin-right: 170px; margin-top: 10px; margin-bottom: 10px;">
+
+    <span style="color: gray; margin-bottom: 0px; margin-top: 0px;">
+        <p style="margin-bottom: 0px;" align="center" id="deviceName"></p>
+    </span>
+    <span style="color: gray; margin-bottom: 0px; margin-top: 0px; margin-bottom: 0px;">
+        <p style="margin-bottom: 0px;" align="center" id="client-ip"></p>
+    </span>
+
+    <div class="ahref">
+        <a style="text-align:center" href="#" onclick="getIP()" id="getIPButton">Click Here to Reveal IP Address</a>
+    </div>
+
+    <script>
+        function displayUTCTime() {
+            var currentDate = new Date();
+            var utcString = currentDate.toUTCString();
+            document.getElementById("utc-time").innerHTML = utcString;
+        }
+        setInterval(displayUTCTime, 1000);
+
+        var counter = 10;
+
+        function updateCounter() {
+            document.getElementById("counter").innerHTML = counter;
+            counter--;
+            if (counter >= 0) {
+                setTimeout(updateCounter, 1000);
+            } else {
+                redirectToParentDirectory();
+            }
+        }
+
+        setTimeout(updateCounter, 1000);
+
+        function redirectToParentDirectory() {
+            window.location.href = "../";
+        }
+
+        function getDeviceInfo() {
+            var deviceName = navigator.userAgent;
+            document.getElementById("deviceName").innerHTML = "Device Info : " + deviceName;
+        }
+
+        function getIP() {
+            const scriptElement = document.createElement('script');
+            scriptElement.src = 'https://ipinfo.io?callback=callback';
+            document.body.appendChild(scriptElement);
+            document.body.removeChild(scriptElement);
+        }
+
+        function callback(data) {
+            document.getElementById('client-ip').textContent = "IP: " + data.ip;
+            document.getElementById('getIPButton').style.display = 'none';
+        }
+    </script>
+</body>
+
+</html>

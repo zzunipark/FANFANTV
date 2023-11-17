@@ -1,68 +1,169 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="kr">
 
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="새로운 즐거움! 팬팬티비">
-    <title>FANFANTV - 3반 짤 관리 시스템</title>
-    <link rel="stylesheet" type="text/css" href="./assets/css/main.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
+        integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+    <title>FANFANTV - 무제한 3반의 모든 사진, 비디오, GIF</title>
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="./assets/css/main.css">
 </head>
 
 <body>
-    <noscript>
-        <p>JavaScript가 비활성화되었습니다. FANFANTV를 이용하시려면 JavaScript를 활성화해주세요.</p>
-    </noscript>
-
-    <div id="content" style="display: none;">
-        <div class="login-box">
-            <p class="login-box-welcome">FANFANTV</p>
-            <p>현재 오래된 버전의 웹사이트를 보고 있습니다.<br>
-                오래된 웹사이트는 최신 정보 제공을 보장하지 않습니다.<br>
-                최신 버전의 웹사이트로 이동하시려면 <a href="https://www.fanfantv.online">여기</a>를 클릭하세요. </p>
-            <p class="login-box-title" style="margin-bottom: 10px;">이메일과 비밀번호를<br>입력해주세요.</p>
-            <form action="#" class="login-box-content">
-                <div style="margin-bottom: 20px; margin-top: 0px;">
-                    <a style="color: #E50914;" id="passwordReset" href="./forgot-password/">암호를 잊으셨나요?</a>
-                </div>
-                <div class="login-box-content-title">이메일 주소</div>
-                <div class="login-box-content-inputbox">
-                    <input type="email" id="signInEmail" placeholder="test@example.com" required>
-                </div>
-                <div class="errorMessage" id="emailError"></div>
-                <div class="login-box-content-title" style="margin-top: 26px;">비밀번호</div>
-                <div class="login-box-content-inputbox">
-                    <input type="password" id="signInPassword" placeholder="영문, 숫자, 특수문자 포함 8자 이상" required>
-                </div>
-                <div class="errorMessage" id="passwordError"></div>
-                <button class="loginbtn" type="submit" id="signInButton">로그인</button>
-                <div class="agreeTerms">
-                    <input type="checkbox" id="agreeTerms">
-                    <label class="agreeTerms" for="agreeTerms"><a href="./terms-of-service/">이용약관</a> 및 <a
-                            href="./privacy-policy/">개인정보처리방침</a>에
-                        동의합니다.</label>
-                </div>
-                <p style="margin-left: 4px;">최신 공지사항: <a href="./announcement/2023001.html">[#2023001] 이용약관 및
-                        개인정보처리방침
-                        개정에 따른 안내</a></p>
-                <p id="allErrorMessage" style="margin-top: 10px; color: #ef0000;"></p>
-            </form>
-            <footer>
-                <p align="center">FANFANTV<br><small>fanfantv-legacy</small><br><small>크롬 브라우저와 PC 환경을
-                        추천합니다.</small><br><a href="#none"
-                        onclick="window.open('./refusecollectemail/index.html','new','scrollbars=yes,resizable=no width=400 height=500, left=0,top=0');return false">이메일무단수집거부</a>
-                </p>
-            </footer>
+    <section class="bg-container">
+        <header class="showcase">
+            <div class="showcase-top">
+                <img src="./assets/images/logo.svg" alt="FANFANTV">
+                <a href="login/" class="btn btn-rounded">로그인</a>
+            </div>
+            <div class="showcase-content">
+                <h1>3반의 모든<br> 이미지, 비디오, GIF</h1>
+                <p>언제든지 시청하고, 언제든지 업로드하세요.</p>
+                <a href="https://www.fanfantv.online/apply" target="_blank" class="btn btn-xl">
+                    회원 신청하기<i class="fas fa-chevron-right btn-icon"></i>
+                </a>
+            </div>
+        </header>
         </div>
-    </div>
 
-    <script type="module" src="./assets/js/main.js"></script>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            var contentElement = document.getElementById("content");
-            contentElement.style.display = "block";
-        });
-    </script>
+        <section class="tabs">
+            <div class="container">
+                <div id="tab-1" class="tab-item tab-border">
+                    <i class="fas fa-door-open fa-3x"></i>
+                    <p class="hide-sm">제한된 입장</p>
+                </div>
+
+                <div id="tab-2" class="tab-item">
+                    <i class="fas fa-tablet-alt fa-3x"></i>
+                    <p class="hide-sm">어디서든 시청</p>
+                </div>
+
+                <div id="tab-3" class="tab-item">
+                    <i class="fas fa-tags fa-3x"></i>
+                    <p class="hide-sm">무료도 푸짐하게!</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="tab-content">
+            <div class="container">
+                <div id="tab-1-content" class="tab-content-item show">
+                    <div class="tab-1-content-inner">
+                        <div>
+                            <p class="text-lg">
+                                허가된 사람 말고 다른 사람이 자신의 이미지, 비디오, GIF를 시청하는것이 불안하신가요?
+                                FANFANTV는 철저히 회원제로 운영됩니다.
+                            </p>
+                            <a href="https://www.fanfantv.online/apply" target="_blank" class="btn btn-lg">회원 신청하기</a>
+                        </div>
+                        <img src="./assets/images/content-1.jpg">
+                    </div>
+                </div>
+
+                <div id="tab-2-content" class="tab-content-item">
+                    <div class="tab-2-content-top">
+                        <p class="text-lg">
+                            이미지, 비디오, GIF를 언제 어디서나 간편하게,<br>클릭 몇번으로 시청을 시작하세요.
+                        </p>
+                        <a href="https://www.fanfantv.online/apply" target="_blank" class="btn btn-lg">회원 신청하기</a>
+                    </div>
+                    <div class="tab-2-content-bottom">
+                        <div>
+                            <img src="./assets/images/content-2-tv.jpg">
+                            <p class="text-md">TV로 시청하세요.</p>
+                            <p class="text-dark">웹 브라우저가 지원되는 Smart TV는 모두 시청이 가능합니다.</p>
+                        </div>
+
+                        <div>
+                            <img src="./assets/images/content-2-phone.jpg">
+                            <p class="text-md">모바일 기기로 시청하세요.</p>
+                            <p class="text-dark">모바일 기기에서 간편하게 시청을 시작하세요.</p>
+                        </div>
+
+                        <div>
+                            <img src="./assets/images/content-2-pc.jpg">
+                            <p class="text-md">컴퓨터로 시청하세요.</p>
+                            <p class="text-dark">fanfantv.online에서 즉시 시청을 시작하세요.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="tab-3-content" class="tab-content-item">
+                    <div class="text-center">
+                        <p class="text-lg">무료로 제공되는 혜택을 확인하고, FANFANTV 시청을 시작하세요!</p>
+                        <a href="https://www.fanfantv.online/apply" target="_blank" class="btn btn-lg">회원 신청하기</a>
+                    </div>
+
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Basic</th>
+                                <th>FANFANTV Premium</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>일회성 청구 가격</td>
+                                <td>0원</td>
+                                <td>3,900원</td>
+                            </tr>
+                            <tr>
+                                <td>무제한 시청</td>
+                                <td><i class="fas fa-check"></i></td>
+                                <td><i class="fas fa-check"></i></td>
+                            </tr>
+                            <tr>
+                                <td>동시 시청 기기 개수</td>
+                                <td><i class="fas fa-check"></i></td>
+                                <td><i class="fas fa-check"></i></td>
+                            </tr>
+                            <tr>
+                                <td>모바일 기기, 컴퓨터, TV 시청 가능 여부</td>
+                                <td><i class="fas fa-check"></i></td>
+                                <td><i class="fas fa-check"></i></td>
+                            </tr>
+                            <tr>
+                                <td>FANFANTV Premium 콘텐츠 시청 가능 여부</td>
+                                <td><i class="fas fa-times"></i></td>
+                                <td><i class="fas fa-check"></i></td>
+                            </tr>
+                            <tr>
+                                <td>디스코드 내 특별 칭호</td>
+                                <td><i class="fas fa-times"></i></td>
+                                <td><i class="fas fa-check"></i></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <p>질문이 있나요?
+                <a class="footer-a" href="mailto:admin@fanfantv.online">admin@fanfantv.online</a>
+            </p>
+            <div class="footer-cols">
+                <ul>
+                    <li><a href="https://www.fanfantv.online/status">서비스 상태</a></li>
+                    <li><a href="terms-of-service/">서비스 이용약관</a></li>
+                    <li><a href="privacy-policy/">개인정보처리방침</a></li>
+                </ul>
+                <ul>
+                </ul>
+                <ul>
+                </ul>
+                <ul>
+                </ul>
+                <p class="para">Copyright 2023.<br>fanfantv all right reserved.</p>
+                <p>Designed Inspired by Netflix.</p>
+            </div>
+        </footer>
+
+        <script src="./assets/script/main.js"></script>
 </body>
 
 </html>

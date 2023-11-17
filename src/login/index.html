@@ -1,0 +1,72 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/login.css">
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" />
+    <title>로그인 - FANFANTV</title>
+    <style>
+        .js-hidden {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <noscript>
+        <h1 style="color: white; margin-left: 170px; font-size: 65px; font-weight: 280; margin-bottom: 0px;">An error occurred.</h1>
+        <h4 style="color: white; margin-left: 173px; font-size: 25px; font-weight: 250; margin-top: 5px; margin-bottom: 0px;">
+            <span style="color: gray;">Server refused showing contents : Javascript Disabled</span>
+        </h4>
+
+        <h5 style="color: white; margin-left: 170px; font-size: 30px; font-weight: 380; margin-bottom: 8px; margin-top: 0px;">
+            <br>무엇이 문제인가요?
+        </h5>
+        <h4 style="color: white; margin-left: 173px; font-size: 17px; font-weight: 250; margin-top: 0px;">사용자의 브라우저에서 Javascript를 사용하지
+            않도록 설정되어 있습니다.</h4>
+
+        <h5 style="color: white; margin-left: 170px; font-size: 30px; font-weight: 380; margin-bottom: 8px; margin-top: 10px;">어떻게
+            해야하나요?</h5>
+        <h4 style="color: white; margin-left: 173px; font-size: 17px; font-weight: 250; margin-top: 0px;">브라우저 설정에서 Javascript 사용을 활성화
+            또는 허용하십시오.</h4>
+
+        <hr style="color: white; margin-left: 170px; margin-right: 170px; margin-top: 10px; margin-bottom: 10px;">
+    </noscript>
+
+    <div class="js-hidden">
+        <nav>
+            <a href="../index.html"><img src="../assets/images/logo.svg" alt="logo"></a>
+        </nav>
+        <div class="form-wrapper">
+            <h2>로그인</h2>
+            <p id="errorMessageParagraph"></p>
+            <form id="loginForm" action="#">
+                <div class="form-control">
+                    <input type="email" id="signInEmail" required>
+                    <label>이메일 주소</label>
+                </div>
+                <div class="form-control">
+                    <input type="password" id="signInPassword" required>
+                    <label>비밀번호</label>
+                </div>
+                <button type="submit" id="signInButton">로그인</button>
+                <div class="form-help">
+                    <div class="agreeterms-div">
+                        <input type="checkbox" id="agreeterms" />
+                        <label for="agreetemrs"><a href="../terms-of-service/">이용약관</a>에 동의합니다.</label>
+                    </div>
+                    <a href="mailto:admin@fanfantv.online">도움이 필요하신가요?</a>
+                </div>
+            </form>
+            <p>가입하고 무제한으로 시청하세요. <a href="https://www.fanfantv.online/apply" target="_blank">회원 신청하기 ></a></p>
+        </div>
+    </div>
+
+    <script type="module" src="../assets/script/login.js"></script>
+    <script src="../assets/script/checkjsEnabled.js"></script>
+</body>
+
+</html>

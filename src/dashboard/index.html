@@ -1,50 +1,118 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="kr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="stylesheet" href="../assets/css/main.css" />
+    <link rel="stylesheet" href="../assets/css/dashboard.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" />
+    <title>홈 - FANFANTV</title>
+    <style>
+      .js-hidden {
+        display: none;
+      }
+    </style>
+  </head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="새로운 즐거움! 팬팬티비">
-    <link rel="stylesheet" href="../assets/css/dashboard.css">
-    <script type="module" src="../assets/js/dashboard.js" defer></script>
-    <title>FANFANTV - 대시보드</title>
-</head>
-
-<body>
+  <body>
     <noscript>
-        <p>JavaScript가 비활성화되었습니다. FANFANTV를 이용하시려면 JavaScript를 활성화해주세요.</p>
+      <h1 style="margin-left: 170px; font-size: 65px; font-weight: 280; margin-bottom: 0px">An error occurred.</h1>
+      <h4 style="margin-left: 173px; font-size: 25px; font-weight: 250; margin-top: 5px; margin-bottom: 0px">
+        <span style="color: gray">Server refused showing contents : Javascript Disabled</span>
+      </h4>
+
+      <h5 style="margin-left: 170px; font-size: 30px; font-weight: 380; margin-bottom: 8px; margin-top: 0px"><br />무엇이 문제인가요?</h5>
+      <h4 style="margin-left: 173px; font-size: 17px; font-weight: 250; margin-top: 0px">
+        사용자의 브라우저에서 Javascript를 사용하지 않도록 설정되어 있습니다.
+      </h4>
+
+      <h5 style="margin-left: 170px; font-size: 30px; font-weight: 380; margin-bottom: 8px; margin-top: 10px">어떻게 해야하나요?</h5>
+      <h4 style="margin-left: 173px; font-size: 17px; font-weight: 250; margin-top: 0px">
+        브라우저 설정에서 Javascript 사용을 활성화 또는 허용하십시오.
+      </h4>
+
+      <hr style="margin-left: 170px; margin-right: 170px; margin-top: 10px; margin-bottom: 10px" />
     </noscript>
 
-    <div id="content" style="display: none;">
-        <div class="navbar">
-            <p class="logotitle">FANFANTV <sub><small>fanfantv-legacy</small></sub></p>
-            <div class="navbar-list">
-                <button class="mypage-btn" onclick="window.location.replace('./mypage')">마이페이지</button>
-                <button class="uploadimage-btn" onclick="location.href='./upload-image/'">이미지 업로드하기</button>
-                <button class="logout-btn" id="logoutButton">로그아웃</button>
+    <div class="js-hidden">
+      <div class="wrapper">
+        <header>
+          <div class="logo">
+            <a id="logo" href="../index.html"><img src="../assets/images/logo.svg" /></a>
+          </div>
+          <nav class="main-nav">
+            <a href="#home">홈</a>
+            <a href="#popular">HOT! 인기 콘텐츠</a>
+            <a href="#rising">인기 급상승 콘텐츠</a>
+            <a href="#new">최신 콘텐츠</a>
+            <a href="#original">FANFANTV Original</a>
+          </nav>
+          <nav class="sub-nav">
+            <a href="#"><i class="fas fa-search sub-nav-logo"></i></a>
+            <a href="#"><i class="fas fa-bell sub-nav-logo"></i></a>
+            <a href="#">
+              <small style="margin-top: 0px; margin-bottom: 0px" id="profilename"></small>
+            </a>
+            <button class="btn" id="signOutButton" onclick="logoutfunc()">로그아웃</button>
+          </nav>
+        </header>
+
+        <div class="showcase">
+          <div class="showcase-content">
+            <h1>
+              오직 <span style="color: #e50914">FANFANTV</span>에서만.<br />무제한 <span style="background-color: #e50914">프리미엄</span> 콘텐츠
+            </h1>
+            <p>지금 이용 가능 : FANFANTV Premium<br />3,900원/월</p>
+          </div>
+        </div>
+
+        <section class="main-container">
+          <div class="location" id="home">
+            <h1 id="popular" style="margin-top: 0px">HOT! 인기 콘텐츠</h1>
+            <div class="box">
+              <a href=""><img src="../assets/images/testimage.jpg" alt="" /></a>
+              <a href=""><img src="../assets/images/testimage.jpg" alt="" /></a>
+              <a href=""><img src="../assets/images/testimage.jpg" alt="" /></a>
+              <a href=""><img src="../assets/images/testimage.jpg" alt="" /></a>
+              <a href=""><img src="../assets/images/testimage.jpg" alt="" /></a>
+              <a href=""><img src="../assets/images/testimage.jpg" alt="" /></a>
             </div>
-        </div>
-        <div class="announcement-box">
-            <p style="color: white; text-align: center; font-weight: 600;">현재 오래된 버전의 웹사이트를 보고 있습니다.<br><small
-                    style="font-weight: 400">
-                    오래된 웹사이트는 최신 정보 제공을 보장하지 않습니다.
-                    최신 버전의 웹사이트로 이동하시려면 <a href="https://www.fanfantv.online">여기</a>를 클릭하세요.</small>
-            </p>
-        </div>
-        <div class="thumbnail-grid">
-        </div>
+          </div>
 
-        <p style="text-align: center;"><a href="../privacy-policy/">개인정보처리방침</a> / <a href="../terms-of-service/">서비스
-                이용약관</a> / <a href="#none"
-                onclick="window.open('../refusecollectemail/index.html','new','scrollbars=yes,resizable=no width=400 height=500, left=0,top=0');return false">이메일무단수집거부</a><br><small>fanfantv-legacy</small>
-        </p>
+          <h1 id="rising">인기 급상승 콘텐츠</h1>
+          <div class="box">
+            <a href=""><img src="../assets/images/testimage.jpg" alt="" /></a>
+            <a href=""><img src="../assets/images/testimage.jpg" alt="" /></a>
+            <a href=""><img src="../assets/images/testimage.jpg" alt="" /></a>
+            <a href=""><img src="../assets/images/testimage.jpg" alt="" /></a>
+            <a href=""><img src="../assets/images/testimage.jpg" alt="" /></a>
+            <a href=""><img src="../assets/images/testimage.jpg" alt="" /></a>
+          </div>
+
+          <h1 id="new">최신 콘텐츠</h1>
+          <div class="box">
+            <a href=""><img src="../assets/images/testimage.jpg" alt="" /></a>
+            <a href=""><img src="../assets/images/testimage.jpg" alt="" /></a>
+            <a href=""><img src="../assets/images/testimage.jpg" alt="" /></a>
+            <a href=""><img src="../assets/images/testimage.jpg" alt="" /></a>
+            <a href=""><img src="../assets/images/testimage.jpg" alt="" /></a>
+            <a href=""><img src="../assets/images/testimage.jpg" alt="" /></a>
+          </div>
+
+          <h1 id="original">FANFANTV Original</h1>
+          <div class="box">
+            <a href=""><img src="../assets/images/testimage.jpg" alt="" /></a>
+            <a href=""><img src="../assets/images/testimage.jpg" alt="" /></a>
+            <a href=""><img src="../assets/images/testimage.jpg" alt="" /></a>
+            <a href=""><img src="../assets/images/testimage.jpg" alt="" /></a>
+            <a href=""><img src="../assets/images/testimage.jpg" alt="" /></a>
+            <a href=""><img src="../assets/images/testimage.jpg" alt="" /></a>
+          </div>
+        </section>
+      </div>
     </div>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            var contentElement = document.getElementById("content");
-            contentElement.style.display = "block";
-        });
-    </script>
-</body>
 
+    <script type="module" src="../assets/script/dashboard.js"></script>
+    <script src="../assets/script/checkjsEnabled.js"></script>
+  </body>
 </html>
