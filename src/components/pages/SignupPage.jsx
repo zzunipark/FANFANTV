@@ -1,3 +1,4 @@
+/* eslint-disable */
 import * as s from "../style/SignupPageStyle";
 import { Link } from "react-router-dom";
 

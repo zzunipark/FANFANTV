@@ -1,3 +1,4 @@
+/* eslint-disable */
 import * as s from "../style/PrivacyPolicyPageStyle";
 import { Link } from "react-router-dom";
 

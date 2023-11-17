@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import fanfantvbackground from "../assets/images/fanfantvtitle.png";
 
 export const LoginContainer = styled.div`
   background-color: rgb(27, 27, 27);
