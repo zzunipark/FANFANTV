@@ -252,7 +252,7 @@ const MainPage = () => {
               <s.Footerfanfantvinfo>
                 FANFANTV | 전자우편주소 : admin@fanfantv.online
                 <br />
-                호스팅서비스제공자 : 아마존웹서비시즈코리아 유한회사
+                호스팅서비스제공자 : Google LLC.
               </s.Footerfanfantvinfo>
             </s.Footerfanfantvinfocontainer>
             <s.CopyrightText>
@@ -339,7 +339,7 @@ const MainPage = () => {
               <s.Footerfanfantvinfo>
                 FANFANTV | 전자우편주소 : admin@fanfantv.online
                 <br />
-                호스팅서비스제공자 : 아마존웹서비시즈코리아 유한회사
+                호스팅서비스제공자 : Google LLC.
               </s.Footerfanfantvinfo>
             </s.Footerfanfantvinfocontainer>
             <s.CopyrightText>
@@ -460,7 +460,7 @@ const MainPage = () => {
                   <s.Footerfanfantvinfo>
                     FANFANTV | 전자우편주소 : admin@fanfantv.online
                     <br />
-                    호스팅서비스제공자 : 아마존웹서비시즈코리아 유한회사
+                    호스팅서비스제공자 : Google LLC.
                   </s.Footerfanfantvinfo>
                 </s.Footerfanfantvinfocontainer>
                 <s.CopyrightText>
@@ -549,7 +549,7 @@ const MainPage = () => {
               <s.Footerfanfantvinfo>
                 FANFANTV | 전자우편주소 : admin@fanfantv.online
                 <br />
-                호스팅서비스제공자 : 아마존웹서비시즈코리아 유한회사
+                호스팅서비스제공자 : Google LLC.
               </s.Footerfanfantvinfo>
             </s.Footerfanfantvinfocontainer>
             <s.CopyrightText>
