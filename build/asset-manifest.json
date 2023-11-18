@@ -1,0 +1,11 @@
+{
+  "files": {
+    "main.js": "/static/js/main.f9ebd62a.js",
+    "static/media/fanfantvtitle.png": "/static/media/fanfantvtitle.73f657942a23069b4236.png",
+    "index.html": "/index.html",
+    "main.f9ebd62a.js.map": "/static/js/main.f9ebd62a.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.f9ebd62a.js"
+  ]
+}
