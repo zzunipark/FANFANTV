@@ -3,12 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import * as s from "../style/LoginPageStyle";
 import { initializeApp } from "firebase/app";
-import {
-  getAuth,
-  signInWithEmailAndPassword,
-  onAuthStateChanged,
-  signOut,
-} from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBuNouLpDM-yluSDCzzYn-XKJZgQglMpGA",
@@ -32,10 +27,8 @@ const LoginPage = () => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        console.log("User is signed in");
         setRedirect(true);
       } else {
-        console.log("User is signed out");
       }
     });
 
@@ -53,7 +46,6 @@ const LoginPage = () => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
     } catch (error) {
-      console.error("Error logging in:", error.message);
       setErrorText(getErrorMessage(error.code));
     }
   };
@@ -83,23 +75,10 @@ const LoginPage = () => {
         <Link to="/">
           <s.FANFANTVTitle>FANFANTV</s.FANFANTVTitle>
         </Link>
-        <s.EmailInputBox
-          type="email"
-          placeholder="이메일 주소"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        ></s.EmailInputBox>
-        <s.PasswordInputBox
-          type="password"
-          placeholder="비밀번호"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        ></s.PasswordInputBox>
+        <s.EmailInputBox type="email" placeholder="이메일 주소" value={email} onChange={(e) => setEmail(e.target.value)}></s.EmailInputBox>
+        <s.PasswordInputBox type="password" placeholder="비밀번호" value={password} onChange={(e) => setPassword(e.target.value)}></s.PasswordInputBox>
         <s.ErrorText>{errorText}</s.ErrorText>
-        <s.ReminderText>
-          로그인하면 귀하는 당사의 개인정보처리방침과 이용약관에 동의한 것으로
-          간주됩니다.
-        </s.ReminderText>
+        <s.ReminderText>로그인하면 귀하는 당사의 개인정보처리방침과 이용약관에 동의한 것으로 간주됩니다.</s.ReminderText>
         <s.LoginButton onClick={handleLogin}>로그인</s.LoginButton>
         <Link to="/forgot-password">
           <s.ForgotPasswordText>비밀번호를 잊으셨나요?</s.ForgotPasswordText>

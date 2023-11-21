@@ -4,13 +4,7 @@ import { Link } from "react-router-dom";
 import * as s from "../style/MainPageStyle";
 import { initializeApp } from "firebase/app";
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
-import {
-  getStorage,
-  ref,
-  listAll,
-  getDownloadURL,
-  getMetadata,
-} from "firebase/storage";
+import { getStorage, ref, listAll, getDownloadURL, getMetadata } from "firebase/storage";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBuNouLpDM-yluSDCzzYn-XKJZgQglMpGA",
@@ -35,10 +29,9 @@ const MainPage = () => {
 
   const getCustomMetadata = async (imageRef) => {
     try {
-      const metadata = await getStorage().getMetadata(imageRef);
+      const metadata = await getMetadata(imageRef);
       return metadata;
     } catch (error) {
-      console.error("Error fetching metadata:", error);
       throw error;
     }
   };
@@ -49,16 +42,17 @@ const MainPage = () => {
       const imagesList = await listAll(storageRef);
 
       const metadataPromises = imagesList.items.map(async (imageRef) => {
-        const metadata = await getCustomMetadata(imageRef); // Updated line
-        console.log("Metadata for", imageRef.name, ":", metadata);
-        return { uploadedBy: metadata.customMetadata.uploadedBy };
+        try {
+          const metadata = await getCustomMetadata(imageRef);
+          return { uploadedBy: metadata.customMetadata.uploadedBy };
+        } catch (error) {
+          return { uploadedBy: "Unknown" };
+        }
       });
 
       const metadata = await Promise.all(metadataPromises);
       setImageMetadata(metadata);
-    } catch (error) {
-      console.error("Error fetching image metadata:", error);
-    }
+    } catch (error) {}
   };
 
   useEffect(() => {
@@ -81,11 +75,8 @@ const MainPage = () => {
         });
 
         const urls = await Promise.all(urlsPromises);
-        console.log(urls);
         setImageUrls(urls);
-      } catch (error) {
-        console.error("Error fetching images:", error);
-      }
+      } catch (error) {}
     };
 
     fetchImages();
@@ -98,16 +89,17 @@ const MainPage = () => {
         const imagesList = await listAll(storageRef);
 
         const metadataPromises = imagesList.items.map(async (imageRef) => {
-          const metadata = await getMetadata(imageRef);
-
-          return { uploadedBy: metadata.customMetadata.uploadedBy };
+          try {
+            const metadata = await getCustomMetadata(imageRef);
+            return { uploadedBy: metadata.customMetadata.uploadedBy };
+          } catch (error) {
+            return { uploadedBy: "Unknown" };
+          }
         });
 
         const metadata = await Promise.all(metadataPromises);
         setImageMetadata(metadata);
-      } catch (error) {
-        console.error("Error fetching image metadata:", error);
-      }
+      } catch (error) {}
     };
 
     fetchImageMetadata();
@@ -128,14 +120,8 @@ const MainPage = () => {
         <div className="home">
           <s.SubNavbar>
             <s.SubNavbarul>
-              {isLoggedIn ? (
-                <s.SubNavbarli onClick={handleLogout}>로그아웃</s.SubNavbarli>
-              ) : (
-                <s.LinkSubNav to="/login">로그인</s.LinkSubNav>
-              )}
-              {isLoggedIn ? null : (
-                <s.LinkSubNav to="/signup">회원가입</s.LinkSubNav>
-              )}
+              {isLoggedIn ? <s.SubNavbarli onClick={handleLogout}>로그아웃</s.SubNavbarli> : <s.LinkSubNav to="/login">로그인</s.LinkSubNav>}
+              {isLoggedIn ? null : <s.LinkSubNav to="/signup">회원가입</s.LinkSubNav>}
               <s.SubNavbarli>
                 <s.LinkSubNav to="/notice">공지사항</s.LinkSubNav>
               </s.SubNavbarli>
@@ -144,85 +130,50 @@ const MainPage = () => {
           <s.MainNavbar>
             <s.MainNavbarLogoText>FANFANTV</s.MainNavbarLogoText>
             <s.MainNavbarul>
-              <s.MainNavbarli
-                className={currentPage === "home" ? "active" : ""}
-                onClick={() => setCurrentPage("home")}
-              >
+              <s.MainNavbarli className={currentPage === "home" ? "active" : ""} onClick={() => setCurrentPage("home")}>
                 홈
               </s.MainNavbarli>
-              <s.MainNavbarli
-                className={currentPage === "my" ? "active" : ""}
-                onClick={() => setCurrentPage("my")}
-              >
+              <s.MainNavbarli className={currentPage === "my" ? "active" : ""} onClick={() => setCurrentPage("my")}>
                 MY
               </s.MainNavbarli>
-              <s.MainNavbarli
-                className={currentPage === "gallery" ? "active" : ""}
-                onClick={() => setCurrentPage("gallery")}
-              >
+              <s.MainNavbarli className={currentPage === "gallery" ? "active" : ""} onClick={() => setCurrentPage("gallery")}>
                 갤러리
               </s.MainNavbarli>
-              <s.MainNavbarli
-                className={currentPage === "upload" ? "active" : ""}
-                onClick={() => setCurrentPage("upload")}
-              >
+              <s.MainNavbarli className={currentPage === "upload" ? "active" : ""} onClick={() => setCurrentPage("upload")}>
                 이미지 업로드
               </s.MainNavbarli>
             </s.MainNavbarul>
           </s.MainNavbar>
           <s.AnnounceContainer>
             <s.AnnounceText>
-              현재 새 버전의 웹사이트를 사용중입니다. 일부 기능이 동작하지 않을
-              수 있으며, 페이지가 완전하지 않을 수 있습니다. 이전 버전의
-              웹사이트로 돌아가려면{" "}
-              <s.AnnounceHyperlink href="https://legacy.fanfantv.online">
-                여기
-              </s.AnnounceHyperlink>
-              를 클릭해주세요.
+              현재 새 버전의 웹사이트를 사용중입니다. 일부 기능이 동작하지 않을 수 있으며, 페이지가 완전하지 않을 수 있습니다. 이전 버전의 웹사이트로 돌아가려면 <s.AnnounceHyperlink href="https://legacy.fanfantv.online">여기</s.AnnounceHyperlink>를 클릭해주세요.
             </s.AnnounceText>
           </s.AnnounceContainer>
           <s.MainContainer>
             <s.TitleText>
-              이제, 새로워진 <s.fanfantvtext>FANFANTV</s.fanfantvtext>에서{" "}
-              <s.textimpact>ON</s.textimpact>.
+              이제, 새로워진 <s.fanfantvtext>FANFANTV</s.fanfantvtext>에서 <s.textimpact>ON</s.textimpact>.
             </s.TitleText>
-            <s.DescText>
-              수많은 콘텐츠를 무료로 감상하고, 시청하세요. 이용료는 부과되지
-              않습니다.
-            </s.DescText>
+            <s.DescText>수많은 콘텐츠를 무료로 감상하고, 시청하세요. 이용료는 부과되지 않습니다.</s.DescText>
           </s.MainContainer>
           <s.FeatureBox1>
             <s.FeatureBox1Left>
-              <s.FeatureBox1TitleText>
-                무료로 시청하세요.
-              </s.FeatureBox1TitleText>
-              <s.FeatureBox1DescText>
-                FANFANTV에서는 모든 재밌는, 무서운 컨텐츠들을 무료로 감상할 수
-                있습니다.
-              </s.FeatureBox1DescText>
+              <s.FeatureBox1TitleText>무료로 시청하세요.</s.FeatureBox1TitleText>
+              <s.FeatureBox1DescText>FANFANTV에서는 모든 재밌는, 무서운 컨텐츠들을 무료로 감상할 수 있습니다.</s.FeatureBox1DescText>
             </s.FeatureBox1Left>
             <s.FeatureBox1Right></s.FeatureBox1Right>
           </s.FeatureBox1>
           <s.FeatureBox2>
             <s.FeatureBox2Left></s.FeatureBox2Left>
             <s.FeatureBox2Right>
-              <s.FeatureBox2TitleText>
-                안전하게 즐기세요.
-              </s.FeatureBox2TitleText>
-              <s.FeatureBox2DescText>
-                FANFANTV는 높은 수준의 보안을 보장합니다. 또한, 신뢰할 수 있는
-                플랫폼에서 구동됩니다.
-              </s.FeatureBox2DescText>
+              <s.FeatureBox2TitleText>안전하게 즐기세요.</s.FeatureBox2TitleText>
+              <s.FeatureBox2DescText>FANFANTV는 높은 수준의 보안을 보장합니다. 또한, 신뢰할 수 있는 플랫폼에서 구동됩니다.</s.FeatureBox2DescText>
             </s.FeatureBox2Right>
           </s.FeatureBox2>
           <s.FeatureBox3>
             <s.FeatureBox3Left>
-              <s.FeatureBox3TitleText>
-                언제든지, 어떻게든.
-              </s.FeatureBox3TitleText>
+              <s.FeatureBox3TitleText>언제든지, 어떻게든.</s.FeatureBox3TitleText>
               <s.FeatureBox3DescText>
-                FANFANTV는 365일 24시간 내내 중단없이<s.SupText>[1]</s.SupText>{" "}
-                언제든지 즉시 이용할 수 있습니다.
+                FANFANTV는 365일 24시간 내내 중단없이<s.SupText>[1]</s.SupText> 언제든지 즉시 이용할 수 있습니다.
                 <br />
                 모바일 기기, 태블릿, PC, TV 등 어떤 기기로든지
                 <s.SupText>[2]</s.SupText> 시청하세요.
@@ -232,21 +183,17 @@ const MainPage = () => {
           </s.FeatureBox3>
           <s.AdditionalContainer>
             <s.AdditonalText>
-              <s.SupText>[1]</s.SupText>정부의 요청이나 자연재해와 같은
-              불가항력적인 상황에 대해서는 보장되지 않을 수 있음.
+              <s.SupText>[1]</s.SupText>정부의 요청이나 자연재해와 같은 불가항력적인 상황에 대해서는 보장되지 않을 수 있음.
             </s.AdditonalText>
             <s.AdditonalText>
-              <s.SupText>[2]</s.SupText>웹 브라우저가 지원되는 OS가 탑재된
-              디바이스에 한함.
+              <s.SupText>[2]</s.SupText>웹 브라우저가 지원되는 OS가 탑재된 디바이스에 한함.
             </s.AdditonalText>
           </s.AdditionalContainer>
           <s.FooterContainer>
             <s.FooterBarul>
               <s.FooterNav to="/terms-of-service">이용약관</s.FooterNav>
               <s.FooterNav to="/privacy-policy">개인정보처리방침</s.FooterNav>
-              <s.FooterNav to="/refuse-collect-email">
-                이메일무단수집거부
-              </s.FooterNav>
+              <s.FooterNav to="/refuse-collect-email">이메일무단수집거부</s.FooterNav>
             </s.FooterBarul>
             <s.Footerfanfantvinfocontainer>
               <s.Footerfanfantvinfo>
@@ -255,9 +202,7 @@ const MainPage = () => {
                 호스팅서비스제공자 : Google LLC.
               </s.Footerfanfantvinfo>
             </s.Footerfanfantvinfocontainer>
-            <s.CopyrightText>
-              © 2023 FANFANTV. All rights reserved.
-            </s.CopyrightText>
+            <s.CopyrightText>© 2023 FANFANTV. All rights reserved.</s.CopyrightText>
           </s.FooterContainer>
         </div>
       )}
@@ -265,14 +210,8 @@ const MainPage = () => {
         <div className="my">
           <s.SubNavbar>
             <s.SubNavbarul>
-              {isLoggedIn ? (
-                <s.SubNavbarli onClick={handleLogout}>로그아웃</s.SubNavbarli>
-              ) : (
-                <s.LinkSubNav to="/login">로그인</s.LinkSubNav>
-              )}
-              {isLoggedIn ? null : (
-                <s.LinkSubNav to="/signup">회원가입</s.LinkSubNav>
-              )}
+              {isLoggedIn ? <s.SubNavbarli onClick={handleLogout}>로그아웃</s.SubNavbarli> : <s.LinkSubNav to="/login">로그인</s.LinkSubNav>}
+              {isLoggedIn ? null : <s.LinkSubNav to="/signup">회원가입</s.LinkSubNav>}
               <s.SubNavbarli>
                 <s.LinkSubNav to="/notice">공지사항</s.LinkSubNav>
               </s.SubNavbarli>
@@ -281,28 +220,16 @@ const MainPage = () => {
           <s.MainNavbar>
             <s.MainNavbarLogoText>FANFANTV</s.MainNavbarLogoText>
             <s.MainNavbarul>
-              <s.MainNavbarli
-                className={currentPage === "home" ? "active" : ""}
-                onClick={() => setCurrentPage("home")}
-              >
+              <s.MainNavbarli className={currentPage === "home" ? "active" : ""} onClick={() => setCurrentPage("home")}>
                 홈
               </s.MainNavbarli>
-              <s.MainNavbarli
-                className={currentPage === "my" ? "active" : ""}
-                onClick={() => setCurrentPage("my")}
-              >
+              <s.MainNavbarli className={currentPage === "my" ? "active" : ""} onClick={() => setCurrentPage("my")}>
                 MY
               </s.MainNavbarli>
-              <s.MainNavbarli
-                className={currentPage === "gallery" ? "active" : ""}
-                onClick={() => setCurrentPage("gallery")}
-              >
+              <s.MainNavbarli className={currentPage === "gallery" ? "active" : ""} onClick={() => setCurrentPage("gallery")}>
                 갤러리
               </s.MainNavbarli>
-              <s.MainNavbarli
-                className={currentPage === "upload" ? "active" : ""}
-                onClick={() => setCurrentPage("upload")}
-              >
+              <s.MainNavbarli className={currentPage === "upload" ? "active" : ""} onClick={() => setCurrentPage("upload")}>
                 이미지 업로드
               </s.MainNavbarli>
             </s.MainNavbarul>
@@ -321,9 +248,7 @@ const MainPage = () => {
           {isLoggedIn === true && (
             <div className="loggedin">
               <s.PleaseLoginContainer>
-                <s.PleaseLoginTitleText>
-                  로그인 되었으나 준비중인 페이지입니다.
-                </s.PleaseLoginTitleText>
+                <s.PleaseLoginTitleText>로그인 되었으나 준비중인 페이지입니다.</s.PleaseLoginTitleText>
               </s.PleaseLoginContainer>
             </div>
           )}
@@ -331,9 +256,7 @@ const MainPage = () => {
             <s.FooterBarul>
               <s.FooterNav to="/terms-of-service">이용약관</s.FooterNav>
               <s.FooterNav to="/privacy-policy">개인정보처리방침</s.FooterNav>
-              <s.FooterNav to="/refuse-collect-email">
-                이메일무단수집거부
-              </s.FooterNav>
+              <s.FooterNav to="/refuse-collect-email">이메일무단수집거부</s.FooterNav>
             </s.FooterBarul>
             <s.Footerfanfantvinfocontainer>
               <s.Footerfanfantvinfo>
@@ -342,9 +265,7 @@ const MainPage = () => {
                 호스팅서비스제공자 : Google LLC.
               </s.Footerfanfantvinfo>
             </s.Footerfanfantvinfocontainer>
-            <s.CopyrightText>
-              © 2023 FANFANTV. All rights reserved.
-            </s.CopyrightText>
+            <s.CopyrightText>© 2023 FANFANTV. All rights reserved.</s.CopyrightText>
           </s.FooterContainer>
         </div>
       )}
@@ -352,14 +273,8 @@ const MainPage = () => {
         <div className="gallery">
           <s.SubNavbar>
             <s.SubNavbarul>
-              {isLoggedIn ? (
-                <s.SubNavbarli onClick={handleLogout}>로그아웃</s.SubNavbarli>
-              ) : (
-                <s.LinkSubNav to="/login">로그인</s.LinkSubNav>
-              )}
-              {isLoggedIn ? null : (
-                <s.LinkSubNav to="/signup">회원가입</s.LinkSubNav>
-              )}
+              {isLoggedIn ? <s.SubNavbarli onClick={handleLogout}>로그아웃</s.SubNavbarli> : <s.LinkSubNav to="/login">로그인</s.LinkSubNav>}
+              {isLoggedIn ? null : <s.LinkSubNav to="/signup">회원가입</s.LinkSubNav>}
               <s.SubNavbarli>
                 <s.LinkSubNav to="/notice">공지사항</s.LinkSubNav>
               </s.SubNavbarli>
@@ -368,28 +283,16 @@ const MainPage = () => {
           <s.MainNavbar>
             <s.MainNavbarLogoText>FANFANTV</s.MainNavbarLogoText>
             <s.MainNavbarul>
-              <s.MainNavbarli
-                className={currentPage === "home" ? "active" : ""}
-                onClick={() => setCurrentPage("home")}
-              >
+              <s.MainNavbarli className={currentPage === "home" ? "active" : ""} onClick={() => setCurrentPage("home")}>
                 홈
               </s.MainNavbarli>
-              <s.MainNavbarli
-                className={currentPage === "my" ? "active" : ""}
-                onClick={() => setCurrentPage("my")}
-              >
+              <s.MainNavbarli className={currentPage === "my" ? "active" : ""} onClick={() => setCurrentPage("my")}>
                 MY
               </s.MainNavbarli>
-              <s.MainNavbarli
-                className={currentPage === "gallery" ? "active" : ""}
-                onClick={() => setCurrentPage("gallery")}
-              >
+              <s.MainNavbarli className={currentPage === "gallery" ? "active" : ""} onClick={() => setCurrentPage("gallery")}>
                 갤러리
               </s.MainNavbarli>
-              <s.MainNavbarli
-                className={currentPage === "upload" ? "active" : ""}
-                onClick={() => setCurrentPage("upload")}
-              >
+              <s.MainNavbarli className={currentPage === "upload" ? "active" : ""} onClick={() => setCurrentPage("upload")}>
                 이미지 업로드
               </s.MainNavbarli>
             </s.MainNavbarul>
@@ -408,22 +311,13 @@ const MainPage = () => {
           {isLoggedIn === true && (
             <div className="loggedin">
               <s.AnnounceContainer>
-                <s.AnnounceText>
-                  교내 와이파이 DNS 서버 응답 지연으로 추정되는 문제로 교내
-                  와이파이 사용시 이미지를 불러오는 속도가 느려질 수 있습니다.
-                </s.AnnounceText>
+                <s.AnnounceText>교내 와이파이 DNS 서버 응답 지연으로 추정되는 문제로 교내 와이파이 사용시 이미지를 불러오는 속도가 느려질 수 있습니다.</s.AnnounceText>
               </s.AnnounceContainer>
               <s.GalleryContainer>
                 {imageUrls.map((imageUrl, index) => (
-                  <s.GalleryImageContainer
-                    key={index}
-                    onClick={() => setSelectedImage(imageUrl)}
-                  >
+                  <s.GalleryImageContainer key={index} onClick={() => setSelectedImage(imageUrl)}>
                     <img src={imageUrl} alt={`gallery-image-${index}`} />
-                    <s.UploadedByText>
-                      Uploaded by:{" "}
-                      {imageMetadata[index]?.uploadedBy || "Unknown"}
-                    </s.UploadedByText>
+                    <s.UploadedByText>Uploaded by: {imageMetadata[index]?.uploadedBy || "Unknown"}</s.UploadedByText>
                   </s.GalleryImageContainer>
                 ))}
               </s.GalleryContainer>
@@ -449,12 +343,8 @@ const MainPage = () => {
               <s.FooterContainer>
                 <s.FooterBarul>
                   <s.FooterNav to="/terms-of-service">이용약관</s.FooterNav>
-                  <s.FooterNav to="/privacy-policy">
-                    개인정보처리방침
-                  </s.FooterNav>
-                  <s.FooterNav to="/refuse-collect-email">
-                    이메일무단수집거부
-                  </s.FooterNav>
+                  <s.FooterNav to="/privacy-policy">개인정보처리방침</s.FooterNav>
+                  <s.FooterNav to="/refuse-collect-email">이메일무단수집거부</s.FooterNav>
                 </s.FooterBarul>
                 <s.Footerfanfantvinfocontainer>
                   <s.Footerfanfantvinfo>
@@ -463,9 +353,7 @@ const MainPage = () => {
                     호스팅서비스제공자 : Google LLC.
                   </s.Footerfanfantvinfo>
                 </s.Footerfanfantvinfocontainer>
-                <s.CopyrightText>
-                  © 2023 FANFANTV. All rights reserved.
-                </s.CopyrightText>
+                <s.CopyrightText>© 2023 FANFANTV. All rights reserved.</s.CopyrightText>
               </s.FooterContainer>
             </div>
           )}
@@ -475,14 +363,8 @@ const MainPage = () => {
         <div className="upload">
           <s.SubNavbar>
             <s.SubNavbarul>
-              {isLoggedIn ? (
-                <s.SubNavbarli onClick={handleLogout}>로그아웃</s.SubNavbarli>
-              ) : (
-                <s.LinkSubNav to="/login">로그인</s.LinkSubNav>
-              )}
-              {isLoggedIn ? null : (
-                <s.LinkSubNav to="/signup">회원가입</s.LinkSubNav>
-              )}
+              {isLoggedIn ? <s.SubNavbarli onClick={handleLogout}>로그아웃</s.SubNavbarli> : <s.LinkSubNav to="/login">로그인</s.LinkSubNav>}
+              {isLoggedIn ? null : <s.LinkSubNav to="/signup">회원가입</s.LinkSubNav>}
               <s.SubNavbarli>
                 <s.LinkSubNav to="/notice">공지사항</s.LinkSubNav>
               </s.SubNavbarli>
@@ -491,28 +373,16 @@ const MainPage = () => {
           <s.MainNavbar>
             <s.MainNavbarLogoText>FANFANTV</s.MainNavbarLogoText>
             <s.MainNavbarul>
-              <s.MainNavbarli
-                className={currentPage === "home" ? "active" : ""}
-                onClick={() => setCurrentPage("home")}
-              >
+              <s.MainNavbarli className={currentPage === "home" ? "active" : ""} onClick={() => setCurrentPage("home")}>
                 홈
               </s.MainNavbarli>
-              <s.MainNavbarli
-                className={currentPage === "my" ? "active" : ""}
-                onClick={() => setCurrentPage("my")}
-              >
+              <s.MainNavbarli className={currentPage === "my" ? "active" : ""} onClick={() => setCurrentPage("my")}>
                 MY
               </s.MainNavbarli>
-              <s.MainNavbarli
-                className={currentPage === "gallery" ? "active" : ""}
-                onClick={() => setCurrentPage("gallery")}
-              >
+              <s.MainNavbarli className={currentPage === "gallery" ? "active" : ""} onClick={() => setCurrentPage("gallery")}>
                 갤러리
               </s.MainNavbarli>
-              <s.MainNavbarli
-                className={currentPage === "upload" ? "active" : ""}
-                onClick={() => setCurrentPage("upload")}
-              >
+              <s.MainNavbarli className={currentPage === "upload" ? "active" : ""} onClick={() => setCurrentPage("upload")}>
                 이미지 업로드
               </s.MainNavbarli>
             </s.MainNavbarul>
@@ -531,9 +401,7 @@ const MainPage = () => {
           {isLoggedIn === true && (
             <div className="loggedin">
               <s.PleaseLoginContainer>
-                <s.PleaseLoginTitleText>
-                  로그인 되었으나 준비중인 페이지입니다.
-                </s.PleaseLoginTitleText>
+                <s.PleaseLoginTitleText>로그인 되었으나 준비중인 페이지입니다.</s.PleaseLoginTitleText>
               </s.PleaseLoginContainer>
             </div>
           )}
@@ -541,9 +409,7 @@ const MainPage = () => {
             <s.FooterBarul>
               <s.FooterNav to="/terms-of-service">이용약관</s.FooterNav>
               <s.FooterNav to="/privacy-policy">개인정보처리방침</s.FooterNav>
-              <s.FooterNav to="/refuse-collect-email">
-                이메일무단수집거부
-              </s.FooterNav>
+              <s.FooterNav to="/refuse-collect-email">이메일무단수집거부</s.FooterNav>
             </s.FooterBarul>
             <s.Footerfanfantvinfocontainer>
               <s.Footerfanfantvinfo>
@@ -552,9 +418,7 @@ const MainPage = () => {
                 호스팅서비스제공자 : Google LLC.
               </s.Footerfanfantvinfo>
             </s.Footerfanfantvinfocontainer>
-            <s.CopyrightText>
-              © 2023 FANFANTV. All rights reserved.
-            </s.CopyrightText>
+            <s.CopyrightText>© 2023 FANFANTV. All rights reserved.</s.CopyrightText>
           </s.FooterContainer>
         </div>
       )}

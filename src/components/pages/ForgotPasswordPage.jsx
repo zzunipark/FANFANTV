@@ -26,12 +26,8 @@ const ForgotPasswordPage = () => {
 
     try {
       await sendPasswordResetEmail(auth, email);
-      setErrorMessage(
-        "입력한 이메일 주소로 비밀번호 재설정 링크를 전송했습니다.\n만약 이메일이 수신되지 않으면 스팸 메일함을 확인해주세요."
-      );
+      setErrorMessage("입력한 이메일 주소로 비밀번호 재설정 링크를 전송했습니다.\n만약 이메일이 수신되지 않으면 스팸 메일함을 확인해주세요.");
     } catch (error) {
-      console.error(error.message);
-
       if (error.code === "auth/invalid-email") {
         setErrorMessage("유효하지 않은 이메일 주소입니다.");
       } else if (error.code === "auth/user-not-found") {
@@ -54,9 +50,7 @@ const ForgotPasswordPage = () => {
             __html: errorMessage.replace(/\n/g, "<br />"),
           }}
         />
-        <s.FindPasswordButton onClick={handleResetPassword}>
-          비밀번호 재설정
-        </s.FindPasswordButton>
+        <s.FindPasswordButton onClick={handleResetPassword}>비밀번호 재설정</s.FindPasswordButton>
       </s.ForgotPasswordBox>
     </s.ForgotPasswordContainer>
   );
