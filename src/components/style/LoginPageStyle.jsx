@@ -125,3 +125,11 @@ export const SignUpText = styled.div`
   line-height: 75px;
   cursor: pointer;
 `;
+
+export const Formbox = styled.form`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+`;
