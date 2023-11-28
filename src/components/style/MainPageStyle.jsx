@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import fanfantvtitlepngPath from "../assets/images/fanfantvtitle.png";
+import UploadImageBackgroundpngPath from "../assets/images/UploadImageLabel.png";
 import { Link } from "react-router-dom";
 
 export const LinkSubNav = styled(Link)`
@@ -419,7 +420,6 @@ export const ModalContent = styled.div`
 export const UploadImageContainer = styled.div`
   background-color: rgb(27, 27, 27);
   height: calc(100vh - 75px);
-  position: fixed;
   top: 109px;
   right: 0;
   bottom: 0;
@@ -446,9 +446,13 @@ export const UploadImageTitle = styled.p`
   line-height: 75px;
 `;
 
-export const UploadImageInputBox = styled.input`
+export const UploadImageInput = styled.input`
+  display: none;
+`;
+
+export const UploadImageLabelBox = styled.label`
   width: 300px;
-  height: 50px;
+  height: 200px;
   background-color: #2f2f2f;
   border-radius: 5px;
   border: none;
@@ -458,8 +462,32 @@ export const UploadImageInputBox = styled.input`
   font-weight: 400;
   line-height: 75px;
   color: white;
-
+  margin-bottom: 5px;
+  cursor: pointer;
+  background-image: url(${UploadImageBackgroundpngPath});
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 275px;
   &:focus {
     outline: none;
   }
+`;
+
+export const UploadImageProgress = styled.progress`
+  width: 320px;
+  margin-top: 5px;
+`;
+
+export const CancelUploadButton = styled.button`
+  width: 130px;
+  height: 30px;
+  background-color: #2f2f2f;
+  border: none;
+  margin-top: 10px;
+  border-radius: 5px;
+  color: white;
+  font-size: 20px;
+  margin-bottom: 20px;
+  padding: 5px;
+  font-weight: 600;
 `;

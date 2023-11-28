@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import * as s from "../style/MainPageStyle";
 import { initializeApp } from "firebase/app";
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
-import { getStorage, ref, listAll, getDownloadURL, getMetadata } from "firebase/storage";
+import { getStorage, ref, listAll, getDownloadURL, getMetadata, uploadBytesResumable, updateMetadata } from "firebase/storage";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBuNouLpDM-yluSDCzzYn-XKJZgQglMpGA",
@@ -26,10 +26,76 @@ const MainPage = () => {
   const [imageUrls, setImageUrls] = useState([]);
   const [imageMetadata, setImageMetadata] = useState([]);
   const [selectedImage, setSelectedImage] = useState(null);
+  const [uploadTask, setUploadTask] = useState(null);
+  const [uploadProgress, setUploadProgress] = useState(0);
+
+  const handleImageUpload = async (file) => {
+    try {
+      const storageRef = ref(storage, `/images/${file.name}`);
+      const uploadTask = uploadBytesResumable(storageRef, file);
+
+      setUploadTask(uploadTask);
+
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {
+          const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          setUploadProgress(progress);
+        },
+        (error) => {
+          console.error("Error uploading image:", error);
+        },
+        async () => {
+          setUploadProgress(100);
+          const downloadURL = await getDownloadURL(storageRef);
+
+          const user = auth.currentUser;
+
+          const metadata = {
+            customMetadata: {
+              uploadedBy: user.displayName || "Unknown",
+            },
+          };
+
+          await updateMetadata(storageRef, metadata);
+
+          fetchImages();
+
+          window.alert("이미지 업로드가 완료되었습니다.");
+        }
+      );
+    } catch (error) {}
+  };
+
+  const cancelUpload = () => {
+    if (uploadTask !== null) {
+      uploadTask.cancel();
+      setUploadTask(null);
+      setUploadProgress(0);
+    }
+  };
+
+  const fetchImages = async () => {
+    try {
+      const storageRef = ref(storage, "/images");
+      const imagesList = await listAll(storageRef);
+
+      const urlsPromises = imagesList.items.map(async (imageRef) => {
+        const imageUrl = await getDownloadURL(imageRef);
+        return imageUrl;
+      });
+
+      const urls = await Promise.all(urlsPromises);
+      setImageUrls(urls);
+    } catch (error) {
+      console.error("Error fetching images:", error);
+    }
+  };
 
   const getCustomMetadata = async (imageRef) => {
     try {
       const metadata = await getMetadata(imageRef);
+      console.log("Retrieved metadata:", metadata);
       return metadata;
     } catch (error) {
       throw error;
@@ -400,9 +466,18 @@ const MainPage = () => {
           )}
           {isLoggedIn === true && (
             <div className="loggedin">
-              <s.PleaseLoginContainer>
-                <s.PleaseLoginTitleText>로그인 되었으나 준비중인 페이지입니다.</s.PleaseLoginTitleText>
-              </s.PleaseLoginContainer>
+              <s.UploadImageContainer>
+                <s.UploadImageBox>
+                  <s.UploadImageTitle>FANFANTV에 기여하세요.</s.UploadImageTitle>
+                  <s.UploadImageLabelBox>
+                    <s.UploadImageInput type="file" accept="image/jpg, image/jpeg, image/png, image/gif" onChange={(e) => handleImageUpload(e.target.files[0])} />
+                  </s.UploadImageLabelBox>
+
+                  <s.UploadImageProgress value={uploadProgress} max="100"></s.UploadImageProgress>
+
+                  {uploadTask !== null && <s.CancelUploadButton onClick={cancelUpload}>업로드 취소</s.CancelUploadButton>}
+                </s.UploadImageBox>
+              </s.UploadImageContainer>
             </div>
           )}
           <s.FooterContainer>
