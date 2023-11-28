@@ -53,7 +53,7 @@ const MainPage = () => {
 
           const metadata = {
             customMetadata: {
-              uploadedBy: user.displayName || "Unknown",
+              uploadedBy: user.email || "Unknown",
             },
           };
 
@@ -102,25 +102,6 @@ const MainPage = () => {
     }
   };
 
-  const fetchImageMetadata = async () => {
-    try {
-      const storageRef = ref(storage, "/images");
-      const imagesList = await listAll(storageRef);
-
-      const metadataPromises = imagesList.items.map(async (imageRef) => {
-        try {
-          const metadata = await getCustomMetadata(imageRef);
-          return { uploadedBy: metadata.customMetadata.uploadedBy };
-        } catch (error) {
-          return { uploadedBy: "Unknown" };
-        }
-      });
-
-      const metadata = await Promise.all(metadataPromises);
-      setImageMetadata(metadata);
-    } catch (error) {}
-  };
-
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setIsLoggedIn(!!user);
@@ -159,6 +140,7 @@ const MainPage = () => {
             const metadata = await getCustomMetadata(imageRef);
             return { uploadedBy: metadata.customMetadata.uploadedBy };
           } catch (error) {
+            console.error("Error fetching metadata for image:", error);
             return { uploadedBy: "Unknown" };
           }
         });
