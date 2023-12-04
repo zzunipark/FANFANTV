@@ -42,9 +42,7 @@ const MainPage = () => {
           const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
           setUploadProgress(progress);
         },
-        (error) => {
-          console.error("Error uploading image:", error);
-        },
+        (error) => {},
         async () => {
           setUploadProgress(100);
           const downloadURL = await getDownloadURL(storageRef);
@@ -87,15 +85,12 @@ const MainPage = () => {
 
       const urls = await Promise.all(urlsPromises);
       setImageUrls(urls);
-    } catch (error) {
-      console.error("Error fetching images:", error);
-    }
+    } catch (error) {}
   };
 
   const getCustomMetadata = async (imageRef) => {
     try {
       const metadata = await getMetadata(imageRef);
-      console.log("Retrieved metadata:", metadata);
       return metadata;
     } catch (error) {
       throw error;
@@ -450,10 +445,12 @@ const MainPage = () => {
             <div className="loggedin">
               <s.UploadImageContainer>
                 <s.UploadImageBox>
-                  <s.UploadImageTitle>FANFANTV에 기여하세요.</s.UploadImageTitle>
+                  <s.UploadImageTitle>이미지 업로드하기</s.UploadImageTitle>
                   <s.UploadImageLabelBox>
                     <s.UploadImageInput type="file" accept="image/jpg, image/jpeg, image/png, image/gif" onChange={(e) => handleImageUpload(e.target.files[0])} />
                   </s.UploadImageLabelBox>
+
+                  <s.UploadImageTermssNotice>이미지를 업로드하면 이용약관과 개인정보처리방침에 동의한것으로 간주됩니다.</s.UploadImageTermssNotice>
 
                   <s.UploadImageProgress value={uploadProgress} max="100"></s.UploadImageProgress>
 

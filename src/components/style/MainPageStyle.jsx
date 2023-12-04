@@ -479,15 +479,23 @@ export const UploadImageProgress = styled.progress`
 `;
 
 export const CancelUploadButton = styled.button`
-  width: 130px;
+  width: 100px;
   height: 30px;
   background-color: #2f2f2f;
   border: none;
   margin-top: 10px;
   border-radius: 5px;
   color: white;
-  font-size: 20px;
-  margin-bottom: 20px;
+  font-size: 14px;
   padding: 5px;
-  font-weight: 600;
+  font-weight: 400;
+  margin-bottom: 20px;
+  cursor: pointer;
+`;
+
+export const UploadImageTermssNotice = styled.p`
+  color: white;
+  font-size: 8px;
+  font-weight: 400;
+  margin-top: 10px;
 `;
