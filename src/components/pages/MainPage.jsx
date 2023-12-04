@@ -7,7 +7,7 @@ import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 import { getStorage, ref, listAll, getDownloadURL, getMetadata, uploadBytesResumable, updateMetadata } from "firebase/storage";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBuNouLpDM-yluSDCzzYn-XKJZgQglMpGA",
+  apiKey: "AIzaSyBuNouLpDM-yluSDCzzYn-XKJZgQglMpGA", // Safe to expose
   authDomain: "fanfantv-c7537.firebaseapp.com",
   projectId: "fanfantv-c7537",
   storageBucket: "fanfantv-c7537.appspot.com",
