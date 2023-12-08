@@ -11,7 +11,7 @@ const ServiceStatus = () => {
   useEffect(() => {
     const redirectTimer = setTimeout(() => {
       setRedirected(true);
-      window.location.replace("https://zzunilabs.statuspage.io");
+      // window.location.replace("https://zzunilabs.statuspage.io");
     }, 5000);
 
     const intervalTimer = setInterval(() => {
