@@ -23,7 +23,7 @@ function App() {
         <Route path="/terms-of-service" element={<TermsOfServicePage />} />
         <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
         <Route path="/refuse-collect-email" element={<RefuseCollectEmail />} />
-        <Route path="/serice-status" element={<ServiceStatus />} />
+        <Route path="/service-status" element={<ServiceStatus />} />
       </Routes>
     </Router>
   );
