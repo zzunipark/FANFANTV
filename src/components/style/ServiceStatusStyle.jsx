@@ -12,6 +12,8 @@ export const ServiceStatusContainer = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  padding-left: 15px;
+  padding-right: 15px;
 `;
 
 export const TitleText = styled.p`
@@ -39,6 +41,7 @@ export const ProgressBarContainer = styled.div`
 export const ProgressBar = styled.div`
   height: 100%;
   background-color: #4caf50;
+  width: 100%;
 `;
 
 export const ButtonContainer = styled.div`
