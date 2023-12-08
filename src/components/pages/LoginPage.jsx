@@ -86,8 +86,8 @@ const LoginPage = () => {
           <s.FANFANTVTitle>FANFANTV</s.FANFANTVTitle>
         </Link>
         <s.Formbox onSubmit={handleFormSubmit}>
-          <s.EmailInputBox type="email" placeholder="이메일 주소" value={email} onChange={(e) => setEmail(e.target.value)} reqruied></s.EmailInputBox>
-          <s.PasswordInputBox type="password" placeholder="비밀번호" value={password} onChange={(e) => setPassword(e.target.value)} maxLength={15} reqruied></s.PasswordInputBox>
+          <s.EmailInputBox type="email" placeholder="이메일 주소" value={email} onChange={(e) => setEmail(e.target.value)} required></s.EmailInputBox>
+          <s.PasswordInputBox type="password" placeholder="비밀번호" value={password} onChange={(e) => setPassword(e.target.value)} maxLength={15} required></s.PasswordInputBox>
           <s.ErrorText>{errorText}</s.ErrorText>
           <s.ReminderText>로그인하면 귀하는 당사의 개인정보처리방침과 이용약관에 동의한 것으로 간주됩니다.</s.ReminderText>
           <s.LoginButton onClick={handleLogin}>로그인</s.LoginButton>

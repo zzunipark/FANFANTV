@@ -1,13 +1,12 @@
 /* eslint-disable */
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import * as s from "../style/MainPageStyle";
 import { initializeApp } from "firebase/app";
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 import { getStorage, ref, listAll, getDownloadURL, getMetadata, uploadBytesResumable, updateMetadata } from "firebase/storage";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBuNouLpDM-yluSDCzzYn-XKJZgQglMpGA", // Safe to expose
+  apiKey: "AIzaSyBuNouLpDM-yluSDCzzYn-XKJZgQglMpGA",
   authDomain: "fanfantv-c7537.firebaseapp.com",
   projectId: "fanfantv-c7537",
   storageBucket: "fanfantv-c7537.appspot.com",
@@ -135,7 +134,6 @@ const MainPage = () => {
             const metadata = await getCustomMetadata(imageRef);
             return { uploadedBy: metadata.customMetadata.uploadedBy };
           } catch (error) {
-            console.error("Error fetching metadata for image:", error);
             return { uploadedBy: "Unknown" };
           }
         });
@@ -237,6 +235,7 @@ const MainPage = () => {
               <s.FooterNav to="/terms-of-service">이용약관</s.FooterNav>
               <s.FooterNav to="/privacy-policy">개인정보처리방침</s.FooterNav>
               <s.FooterNav to="/refuse-collect-email">이메일무단수집거부</s.FooterNav>
+              <s.FooterNav to="/service-status">서비스 상태</s.FooterNav>
             </s.FooterBarul>
             <s.Footerfanfantvinfocontainer>
               <s.Footerfanfantvinfo>
@@ -300,6 +299,7 @@ const MainPage = () => {
               <s.FooterNav to="/terms-of-service">이용약관</s.FooterNav>
               <s.FooterNav to="/privacy-policy">개인정보처리방침</s.FooterNav>
               <s.FooterNav to="/refuse-collect-email">이메일무단수집거부</s.FooterNav>
+              <s.FooterNav to="/service-status">서비스 상태</s.FooterNav>
             </s.FooterBarul>
             <s.Footerfanfantvinfocontainer>
               <s.Footerfanfantvinfo>
@@ -388,6 +388,7 @@ const MainPage = () => {
                   <s.FooterNav to="/terms-of-service">이용약관</s.FooterNav>
                   <s.FooterNav to="/privacy-policy">개인정보처리방침</s.FooterNav>
                   <s.FooterNav to="/refuse-collect-email">이메일무단수집거부</s.FooterNav>
+                  <s.FooterNav to="/service-status">서비스 상태</s.FooterNav>
                 </s.FooterBarul>
                 <s.Footerfanfantvinfocontainer>
                   <s.Footerfanfantvinfo>
@@ -464,6 +465,7 @@ const MainPage = () => {
               <s.FooterNav to="/terms-of-service">이용약관</s.FooterNav>
               <s.FooterNav to="/privacy-policy">개인정보처리방침</s.FooterNav>
               <s.FooterNav to="/refuse-collect-email">이메일무단수집거부</s.FooterNav>
+              <s.FooterNav to="/service-status">서비스 상태</s.FooterNav>
             </s.FooterBarul>
             <s.Footerfanfantvinfocontainer>
               <s.Footerfanfantvinfo>
