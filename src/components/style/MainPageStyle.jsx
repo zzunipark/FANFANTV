@@ -68,6 +68,14 @@ export const MainNavbar = styled.div`
   height: 75px;
   background-color: rgb(27, 27, 27);
   padding: 0 5vw;
+
+  @media screen and (max-width: 410px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 130px;
+  }
 `;
 
 export const MainNavbarLogoText = styled.p`
@@ -316,6 +324,11 @@ export const PleaseLoginContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  @media screen and (max-width: 410px) {
+    height: calc(100vh - 130px);
+    top: 160px;
+  }
 `;
 
 export const PleaseLoginTitleText = styled.p`
@@ -333,6 +346,18 @@ export const AnnounceContainer = styled.div`
   justify-content: center;
   align-items: center;
   padding: 0 5vw;
+
+  @media screen and (max-width: 530px) {
+    height: 80px;
+  }
+
+  @media screen and (max-width: 354px) {
+    height: 90px;
+  }
+
+  @media screen and (max-width: 266px) {
+    height: 103px;
+  }
 `;
 
 export const AnnounceText = styled.p`
