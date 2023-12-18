@@ -287,7 +287,7 @@ export const AdditonalText = styled.p`
 export const FooterContainer = styled.div`
   display: flex;
   flex-direction: column;
-  height: 130px;
+  height: 140px;
   background-color: rgb(27, 27, 27);
   padding: 0 5vw;
 `;
@@ -521,6 +521,13 @@ export const CancelUploadButton = styled.button`
 export const UploadImageTermssNotice = styled.p`
   color: white;
   font-size: 8px;
+  font-weight: 400;
+  margin-top: 10px;
+`;
+
+export const ZzunilabsText = styled.p`
+  color: rgb(130, 130, 130);
+  font-size: 10px;
   font-weight: 400;
   margin-top: 10px;
 `;
