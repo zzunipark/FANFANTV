@@ -245,6 +245,7 @@ const MainPage = () => {
               </s.Footerfanfantvinfo>
             </s.Footerfanfantvinfocontainer>
             <s.CopyrightText>© 2023 FANFANTV. All rights reserved.</s.CopyrightText>
+            <s.ZzunilabsText>FANFANTV is a project of zzuniLabs</s.ZzunilabsText>
           </s.FooterContainer>
         </div>
       )}
@@ -309,6 +310,7 @@ const MainPage = () => {
               </s.Footerfanfantvinfo>
             </s.Footerfanfantvinfocontainer>
             <s.CopyrightText>© 2023 FANFANTV. All rights reserved.</s.CopyrightText>
+            <s.ZzunilabsText>FANFANTV is a project of zzuniLabs</s.ZzunilabsText>
           </s.FooterContainer>
         </div>
       )}
@@ -398,6 +400,7 @@ const MainPage = () => {
                   </s.Footerfanfantvinfo>
                 </s.Footerfanfantvinfocontainer>
                 <s.CopyrightText>© 2023 FANFANTV. All rights reserved.</s.CopyrightText>
+                <s.ZzunilabsText>FANFANTV is a project of zzuniLabs</s.ZzunilabsText>
               </s.FooterContainer>
             </div>
           )}
@@ -475,6 +478,7 @@ const MainPage = () => {
               </s.Footerfanfantvinfo>
             </s.Footerfanfantvinfocontainer>
             <s.CopyrightText>© 2023 FANFANTV. All rights reserved.</s.CopyrightText>
+            <s.ZzunilabsText>FANFANTV is a project of zzuniLabs</s.ZzunilabsText>
           </s.FooterContainer>
         </div>
       )}
