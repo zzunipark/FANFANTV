@@ -186,9 +186,7 @@ const MainPage = () => {
             </s.MainNavbarul>
           </s.MainNavbar>
           <s.AnnounceContainer>
-            <s.AnnounceText>
-              현재 새 버전의 웹사이트를 사용중입니다. 일부 기능이 동작하지 않을 수 있으며, 페이지가 완전하지 않을 수 있습니다. 이전 버전의 웹사이트로 돌아가려면 <s.AnnounceHyperlink href="https://legacy.fanfantv.online">여기</s.AnnounceHyperlink>를 클릭해주세요.
-            </s.AnnounceText>
+            <s.AnnounceText>FANFANTV의 Firebase 요금제 변경으로 인해 제한된 대역폭을 모두 사용할 경우 이미지를 불러오는 등의 서비스 이용이 원활하지 못할 수 있습니다. 추후 V2에서 이 문제는 해결될 것입니다.</s.AnnounceText>
           </s.AnnounceContainer>
           <s.MainContainer>
             <s.TitleText>
@@ -356,7 +354,7 @@ const MainPage = () => {
           {isLoggedIn === true && (
             <div className="loggedin">
               <s.AnnounceContainer>
-                <s.AnnounceText>교내 와이파이 DNS 서버 응답 지연으로 추정되는 문제로 교내 와이파이 사용시 이미지를 불러오는 속도가 느려질 수 있습니다.</s.AnnounceText>
+                <s.AnnounceText>만약 이미지가 불러와지지 않는 경우 Firebase의 제한된 대역폭을 모두 소진한것일 수 있습니다. 이 경우 자정 이후 다시 시도해보시기 바랍니다. 추후 V2에서 이 문제를 해결할 것입니다.</s.AnnounceText>
               </s.AnnounceContainer>
               <s.GalleryContainer>
                 {imageUrls.map((imageUrl, index) => (
