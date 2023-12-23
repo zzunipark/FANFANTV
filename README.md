@@ -17,3 +17,5 @@ FANFANTV는 광주소프트웨어마이스터고등학교 1학년 3반 짤 관�
 - Firebase Hosting
 - Firebase Cloud Storage
 - Firebase Authentication
+
+# BACKEND DEVELOPING
