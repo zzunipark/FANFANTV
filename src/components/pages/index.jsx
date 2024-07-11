@@ -1,0 +1,9 @@
+export { default as ForgotPasswordPage } from "./ForgotPasswordPage";
+export { default as LoginPage } from "./LoginPage";
+export { default as MainPage } from "./MainPage";
+export { default as NotFoundPage } from "./NotfoundPage";
+export { default as PrivacyPolicyPage } from "./PrivacyPolicyPage";
+export { default as RefuseCollectEmailPage } from "./RefuseCollectEmail";
+export { default as ServiceStatusPage } from "./ServiceStatus";
+export { default as SignupPage } from "./SignupPage";
+export { default as TermsOfServicePage } from "./TermsOfServicePage";
