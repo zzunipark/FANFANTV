@@ -155,8 +155,30 @@ const MainPage = () => {
       .catch((error) => {});
   };
 
+  const closePopUp = () => {
+    window.location.reload(false);
+  };
+
+  const [isVisible, setIsVisible] = useState(true);
+
   return (
     <>
+      <s.ServiceEOLPopUpContainer isVisible={isVisible}>
+        <s.ServiceEOLPopUpContent>
+          <s.ServiceEOLPopUpTitle>
+            <s.fanfantvtext>FANFANTV</s.fanfantvtext> 서비스 종료 안내
+          </s.ServiceEOLPopUpTitle>
+          <s.ServiceEOLPopUpDesc>약 6개월에 걸친 서비스 이용자 감소 및 도메인 기간 만료로 인해 FANFANTV 서비스가 7월 15일부로 종료됩니다.</s.ServiceEOLPopUpDesc>
+          <s.ServiceEOLPopUpDesc>지금까지 이용해주신 모든 분들께 진심으로 감사드립니다.</s.ServiceEOLPopUpDesc>
+          <s.ServiceEOLPopUpDesc>추후 다른 서비스로 새롭게 찾아뵙길 기원합니다.</s.ServiceEOLPopUpDesc>
+          <s.ServiceEOLPopUpDesc>
+            <br />
+            서비스 종료 이후 웹사이트 접속이 불가능해지며,
+          </s.ServiceEOLPopUpDesc>
+          <s.ServiceEOLPopUpDesc>수집한 개인정보 및 이미지를 포함한 모든 데이터는 개인정보처리방침에 따라 안전하게 폐기될 예정입니다.</s.ServiceEOLPopUpDesc>
+          <s.ServiceEOLClosePopUpButton onClick={() => setIsVisible(!isVisible)}>FANFANTV로 돌아가기</s.ServiceEOLClosePopUpButton>
+        </s.ServiceEOLPopUpContent>
+      </s.ServiceEOLPopUpContainer>
       {currentPage === "home" && (
         <div className="home">
           <s.SubNavbar>

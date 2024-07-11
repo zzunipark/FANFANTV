@@ -531,3 +531,56 @@ export const ZzunilabsText = styled.p`
   font-weight: 400;
   margin-top: 10px;
 `;
+
+export const ServiceEOLPopUpContainer = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+
+  display: ${(props) => (props.isVisible ? "flex" : "none")};
+`;
+
+export const ServiceEOLPopUpContent = styled.div`
+  max-width: 50%;
+  max-height: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  flex-direction: column;
+`;
+
+export const ServiceEOLPopUpTitle = styled.p`
+  color: white;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 75px;
+  margin: 0;
+`;
+
+export const ServiceEOLPopUpDesc = styled.p`
+  color: white;
+  font-size: 18px;
+  font-weight: 400;
+  margin-top: 20px;
+  margin: 0;
+`;
+
+export const ServiceEOLClosePopUpButton = styled.button`
+  background-color: #2f2f2f;
+  border: none;
+  margin-top: 20px;
+  border-radius: 7px;
+  color: white;
+  font-size: 19px;
+  padding: 10px;
+  font-weight: 400;
+  cursor: pointer;
+`;
