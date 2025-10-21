@@ -40,13 +40,25 @@ jobs:
           pm2 delete fanfantv-frontend || true
         continue-on-error: true
 
+      - name: Copy environment files
+        run: |
+          if [ -f /root/.env.local ]; then
+            cp /root/.env.local .env.local
+            echo "✅ Copied /root/.env.local to project"
+          else
+            echo "⚠️  Warning: /root/.env.local not found"
+          fi
+
+          if [ -f /root/.env ]; then
+            cp /root/.env server/.env
+            echo "✅ Copied /root/.env to server/"
+          else
+            echo "⚠️  Warning: /root/.env not found"
+          fi
+
       - name: Deploy backend
         working-directory: ./server
         run: |
-          if [ ! -f .env ]; then
-            echo "Warning: .env file not found"
-          fi
-
           pm2 start server.js --name fanfantv-server
           pm2 save
 
