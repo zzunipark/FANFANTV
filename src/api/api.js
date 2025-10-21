@@ -177,6 +177,12 @@ export const imageAPI = {
 			method: "DELETE",
 		});
 	},
+
+	likeImage: async (id) => {
+		return await fetchAPI(`/images/${id}/like`, {
+			method: "POST",
+		});
+	},
 };
 
 const api = {

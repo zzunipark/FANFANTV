@@ -43,8 +43,24 @@ const initDatabase = () => {
         )
       `,
 				(err) => {
+					if (err) console.error("Error creating images table:", err);
+				}
+			);
+
+			db.run(
+				`
+        CREATE TABLE IF NOT EXISTS likes (
+          id INTEGER PRIMARY KEY AUTOINCREMENT,
+          image_id INTEGER NOT NULL,
+          user_email TEXT NOT NULL,
+          created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+          UNIQUE(image_id, user_email),
+          FOREIGN KEY(image_id) REFERENCES images(id) ON DELETE CASCADE
+        )
+      `,
+				(err) => {
 					if (err) {
-						console.error("Error creating images table:", err);
+						console.error("Error creating likes table:", err);
 						reject(err);
 					} else {
 						console.log("Database tables initialized successfully");
@@ -166,9 +182,52 @@ const imageQueries = {
 	},
 };
 
+const likeQueries = {
+	toggle: {
+		run: async (imageId, userEmail) => {
+			const existing = await getQuery(
+				"SELECT * FROM likes WHERE image_id = ? AND user_email = ?",
+				[imageId, userEmail]
+			);
+			if (existing) {
+				await runQuery(
+					"DELETE FROM likes WHERE image_id = ? AND user_email = ?",
+					[imageId, userEmail]
+				);
+				return { liked: false };
+			} else {
+				await runQuery(
+					"INSERT INTO likes (image_id, user_email) VALUES (?, ?)",
+					[imageId, userEmail]
+				);
+				return { liked: true };
+			}
+		},
+	},
+	count: {
+		get: async (imageId) => {
+			const result = await getQuery(
+				"SELECT COUNT(*) as count FROM likes WHERE image_id = ?",
+				[imageId]
+			);
+			return result.count;
+		},
+	},
+	check: {
+		get: async (imageId, userEmail) => {
+			const result = await getQuery(
+				"SELECT * FROM likes WHERE image_id = ? AND user_email = ?",
+				[imageId, userEmail]
+			);
+			return !!result;
+		},
+	},
+};
+
 module.exports = {
 	db,
 	initDatabase,
 	userQueries,
 	imageQueries,
+	likeQueries,
 };

@@ -16,7 +16,9 @@ import {
 	faCloudArrowUp,
 	faCircleCheck,
 	faFileImage,
+	faHeart,
 } from "@fortawesome/free-solid-svg-icons";
+import { faHeart as faHeartRegular } from "@fortawesome/free-regular-svg-icons";
 
 const studentNameMap = {
 	"s23037@gsm.hs.kr": "김동학",
@@ -55,6 +57,40 @@ const MainPage = () => {
 	const [uploadAbortFn, setUploadAbortFn] = useState(null);
 	const [selectedFiles, setSelectedFiles] = useState([]);
 	const [isDragging, setIsDragging] = useState(false);
+	const [isAdmin, setIsAdmin] = useState(false);
+
+	const handleLikeToggle = async (imageId, e) => {
+		e.stopPropagation();
+		try {
+			const response = await imageAPI.likeImage(imageId);
+			if (response.success) {
+				setImages((prevImages) =>
+					prevImages.map((img) =>
+						img.id === imageId
+							? {
+									...img,
+									likeCount: response.likeCount,
+									isLiked: response.liked,
+							  }
+							: img
+					)
+				);
+				setMyImages((prevImages) =>
+					prevImages.map((img) =>
+						img.id === imageId
+							? {
+									...img,
+									likeCount: response.likeCount,
+									isLiked: response.liked,
+							  }
+							: img
+					)
+				);
+			}
+		} catch (error) {
+			console.error("좋아요 처리 실패:", error);
+		}
+	};
 
 	useEffect(() => {
 		setIsLoggedIn(authAPI.isLoggedIn());
@@ -66,6 +102,7 @@ const MainPage = () => {
 		try {
 			const response = await imageAPI.list();
 			setImages(response.images);
+			setIsAdmin(response.isAdmin || false);
 		} catch (error) {
 			console.error("이미지 로딩 실패:", error);
 		}
@@ -595,11 +632,31 @@ const MainPage = () => {
 														</s.ImageActionButton>
 													</s.ImageActions>
 													<s.ImageInfo>
-														{new Date(
-															image.createdAt
-														).toLocaleDateString(
-															"ko-KR"
-														)}
+														<s.LikeInfo>
+															<FontAwesomeIcon
+																icon={
+																	image.isLiked
+																		? faHeart
+																		: faHeartRegular
+																}
+																style={{
+																	color: image.isLiked
+																		? "#e50914"
+																		: "#fff",
+																}}
+															/>
+															<span>
+																{image.likeCount ||
+																	0}
+															</span>
+														</s.LikeInfo>
+														<span>
+															{new Date(
+																image.createdAt
+															).toLocaleDateString(
+																"ko-KR"
+															)}
+														</span>
 													</s.ImageInfo>
 												</s.MyImageCard>
 											))}
@@ -789,12 +846,38 @@ const MainPage = () => {
 													)}
 													alt={image.originalName}
 												/>
-												<s.UploadedByText>
-													{image.uploadedByName ||
-														getNameFromEmail(
-															image.uploadedBy
-														)}
-												</s.UploadedByText>
+												{isAdmin && (
+													<s.AdminDeleteButton
+														onClick={(e) => {
+															e.stopPropagation();
+															handleDeleteImage(
+																image.id
+															);
+														}}
+													>
+														<FontAwesomeIcon
+															icon={faTrash}
+														/>
+													</s.AdminDeleteButton>
+												)}
+												<s.LikeButton
+													onClick={(e) =>
+														handleLikeToggle(
+															image.id,
+															e
+														)
+													}
+													$isLiked={image.isLiked}
+												>
+													<FontAwesomeIcon
+														icon={
+															image.isLiked
+																? faHeart
+																: faHeartRegular
+														}
+													/>
+													<span>{image.likeCount || 0}</span>
+												</s.LikeButton>
 											</s.GalleryImageContainer>
 										))}
 									</s.GalleryGrid>

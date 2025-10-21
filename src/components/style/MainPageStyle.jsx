@@ -558,6 +558,72 @@ export const UploadedByText = styled.div`
 	font-weight: 500;
 `;
 
+export const LikeButton = styled.button`
+	position: absolute;
+	bottom: 10px;
+	right: 10px;
+	background: rgba(0, 0, 0, 0.8);
+	border: none;
+	border-radius: 20px;
+	padding: 8px 15px;
+	color: ${(props) => (props.$isLiked ? "#e50914" : "#fff")};
+	font-size: 14px;
+	font-weight: 600;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	transition: all 0.2s ease;
+	z-index: 10;
+
+	&:hover {
+		background: rgba(0, 0, 0, 0.95);
+		transform: scale(1.05);
+	}
+
+	svg {
+		font-size: 16px;
+		transition: transform 0.2s ease;
+	}
+
+	&:active svg {
+		transform: scale(1.3);
+	}
+
+	span {
+		font-size: 14px;
+		font-weight: 600;
+	}
+`;
+
+export const AdminDeleteButton = styled.button`
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	background: rgba(229, 9, 20, 0.9);
+	border: none;
+	border-radius: 50%;
+	width: 35px;
+	height: 35px;
+	color: #fff;
+	font-size: 14px;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: all 0.2s ease;
+	z-index: 10;
+
+	&:hover {
+		background: rgba(229, 9, 20, 1);
+		transform: scale(1.1);
+	}
+
+	svg {
+		font-size: 14px;
+	}
+`;
+
 export const ModalContainer = styled.div`
 	position: fixed;
 	top: 0;
@@ -1183,4 +1249,19 @@ export const ImageInfo = styled.div`
 	color: white;
 	font-size: 11px;
 	text-align: center;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+`;
+
+export const LikeInfo = styled.div`
+	display: flex;
+	align-items: center;
+	gap: 5px;
+	font-size: 12px;
+	font-weight: 600;
+
+	svg {
+		font-size: 14px;
+	}
 `;

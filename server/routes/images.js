@@ -2,10 +2,12 @@ const express = require("express");
 const multer = require("multer");
 const path = require("path");
 const fs = require("fs");
-const { imageQueries } = require("../database");
+const { imageQueries, likeQueries } = require("../database");
 const authMiddleware = require("../middleware/auth");
 
 const router = express.Router();
+
+const ADMIN_EMAIL = "s23046@gsm.hs.kr";
 
 const studentNameMap = {
 	"s23037@gsm.hs.kr": "김동학",
@@ -137,22 +139,34 @@ router.get("/list", authMiddleware, async (req, res) => {
 	try {
 		const images = await imageQueries.findAll.all();
 
-		const imageList = images.map((img) => ({
-			id: img.id,
-			filename: img.filename,
-			originalName: img.original_name,
-			uploadedBy: img.uploaded_by,
-			uploadedByName: getNameFromEmail(img.uploaded_by),
-			size: img.file_size,
-			mimeType: img.mime_type,
-			createdAt: img.created_at,
-			url: `/api/images/${img.filename}`,
-		}));
+		const imageListWithLikes = await Promise.all(
+			images.map(async (img) => {
+				const likeCount = await likeQueries.count.get(img.id);
+				const isLiked = await likeQueries.check.get(
+					img.id,
+					req.user.email
+				);
+				return {
+					id: img.id,
+					filename: img.filename,
+					originalName: img.original_name,
+					uploadedBy: img.uploaded_by,
+					uploadedByName: getNameFromEmail(img.uploaded_by),
+					size: img.file_size,
+					mimeType: img.mime_type,
+					createdAt: img.created_at,
+					url: `/api/images/${img.filename}`,
+					likeCount,
+					isLiked,
+				};
+			})
+		);
 
 		res.json({
 			success: true,
-			count: imageList.length,
-			images: imageList,
+			count: imageListWithLikes.length,
+			images: imageListWithLikes,
+			isAdmin: req.user.email === ADMIN_EMAIL,
 		});
 	} catch (error) {
 		console.error("Get images error:", error);
@@ -166,25 +180,35 @@ router.get("/list", authMiddleware, async (req, res) => {
 // 내가 업로드한 이미지 목록 조회
 router.get("/my-images", authMiddleware, async (req, res) => {
 	try {
-		// findByUser 쿼리 사용 (성능 개선)
 		const myImages = await imageQueries.findByUser.all(req.user.email);
 
-		const imageList = myImages.map((img) => ({
-			id: img.id,
-			filename: img.filename,
-			originalName: img.original_name,
-			uploadedBy: img.uploaded_by,
-			uploadedByName: getNameFromEmail(img.uploaded_by),
-			size: img.file_size,
-			mimeType: img.mime_type,
-			createdAt: img.created_at,
-			url: `/api/images/${img.filename}`,
-		}));
+		const imageListWithLikes = await Promise.all(
+			myImages.map(async (img) => {
+				const likeCount = await likeQueries.count.get(img.id);
+				const isLiked = await likeQueries.check.get(
+					img.id,
+					req.user.email
+				);
+				return {
+					id: img.id,
+					filename: img.filename,
+					originalName: img.original_name,
+					uploadedBy: img.uploaded_by,
+					uploadedByName: getNameFromEmail(img.uploaded_by),
+					size: img.file_size,
+					mimeType: img.mime_type,
+					createdAt: img.created_at,
+					url: `/api/images/${img.filename}`,
+					likeCount,
+					isLiked,
+				};
+			})
+		);
 
 		res.json({
 			success: true,
-			count: imageList.length,
-			images: imageList,
+			count: imageListWithLikes.length,
+			images: imageListWithLikes,
 		});
 	} catch (error) {
 		console.error("Get my images error:", error);
@@ -220,6 +244,36 @@ router.get("/:filename", (req, res) => {
 	}
 });
 
+// 이미지 좋아요 토글
+router.post("/:id/like", authMiddleware, async (req, res) => {
+	try {
+		const imageId = req.params.id;
+		const image = await imageQueries.findById.get(imageId);
+
+		if (!image) {
+			return res.status(404).json({
+				success: false,
+				message: "이미지를 찾을 수 없습니다.",
+			});
+		}
+
+		const result = await likeQueries.toggle.run(imageId, req.user.email);
+		const likeCount = await likeQueries.count.get(imageId);
+
+		res.json({
+			success: true,
+			liked: result.liked,
+			likeCount,
+		});
+	} catch (error) {
+		console.error("Toggle like error:", error);
+		res.status(500).json({
+			success: false,
+			message: "좋아요 처리 중 오류가 발생했습니다.",
+		});
+	}
+});
+
 // 이미지 삭제
 router.delete("/:id", authMiddleware, async (req, res) => {
 	try {
@@ -233,20 +287,20 @@ router.delete("/:id", authMiddleware, async (req, res) => {
 			});
 		}
 
-		// 본인이 업로드한 이미지만 삭제 가능
-		if (image.uploaded_by !== req.user.email) {
+		if (
+			image.uploaded_by !== req.user.email &&
+			req.user.email !== ADMIN_EMAIL
+		) {
 			return res.status(403).json({
 				success: false,
 				message: "본인이 업로드한 이미지만 삭제할 수 있습니다.",
 			});
 		}
 
-		// 파일 삭제
 		if (fs.existsSync(image.file_path)) {
 			fs.unlinkSync(image.file_path);
 		}
 
-		// DB에서 삭제
 		await imageQueries.delete.run(imageId);
 
 		res.json({
