@@ -159,9 +159,9 @@ const MainPage = () => {
 				continue;
 			}
 
-			if (file.size > 10 * 1024 * 1024) {
+			if (file.size > 30 * 1024 * 1024) {
 				window.alert(
-					`${file.name}: 파일 크기는 10MB를 초과할 수 없습니다.`
+					`${file.name}: 파일 크기는 30MB를 초과할 수 없습니다.`
 				);
 				continue;
 			}
@@ -177,6 +177,8 @@ const MainPage = () => {
 	const handleImageUpload = async () => {
 		if (!selectedFiles || selectedFiles.length === 0) return;
 
+		const abortControllers = [];
+
 		try {
 			setIsUploading(true);
 			setUploadProgress(0);
@@ -185,11 +187,18 @@ const MainPage = () => {
 			const totalFiles = selectedFiles.length;
 
 			for (const file of selectedFiles) {
-				await imageAPI.upload(file, (progress) => {
+				const { promise, abort } = imageAPI.upload(file, (progress) => {
 					const overallProgress =
 						((completedCount + progress / 100) / totalFiles) * 100;
 					setUploadProgress(overallProgress);
 				});
+				
+				abortControllers.push(abort);
+				setUploadAbortFn(() => () => {
+					abortControllers.forEach(ctrl => ctrl());
+				});
+
+				await promise;
 				completedCount++;
 			}
 
@@ -200,10 +209,14 @@ const MainPage = () => {
 			setUploadProgress(0);
 			setSelectedFiles([]);
 		} catch (error) {
-			console.error("업로드 실패:", error);
-			window.alert(
-				error.message || "이미지 업로드 중 오류가 발생했습니다."
-			);
+			if (error.name === 'AbortError' || error.message === 'Upload cancelled') {
+				window.alert("업로드가 취소되었습니다.");
+			} else {
+				console.error("업로드 실패:", error);
+				window.alert(
+					error.message || "이미지 업로드 중 오류가 발생했습니다."
+				);
+			}
 		} finally {
 			setIsUploading(false);
 			setUploadAbortFn(null);
@@ -1058,7 +1071,7 @@ const MainPage = () => {
 												: "이미지를 드래그하거나 클릭하세요"}
 										</s.UploadText>
 										<s.UploadSubText>
-											JPG, PNG, GIF, WEBP (최대 10MB) •
+											JPG, PNG, GIF, WEBP (최대 30MB) •
 											여러 파일 선택 가능
 										</s.UploadSubText>
 									</s.UploadImageLabelBox>

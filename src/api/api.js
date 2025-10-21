@@ -114,24 +114,40 @@ export const authAPI = {
 };
 
 export const imageAPI = {
-	upload: async (file, onProgress) => {
+	upload: (file, onProgress) => {
 		const formData = new FormData();
 		formData.append("image", file);
 
 		const token = getAuthToken();
 
-		return new Promise((resolve, reject) => {
-			const xhr = new XMLHttpRequest();
+		if (!token) {
+			return {
+				promise: Promise.reject({
+					status: 401,
+					message: "로그인이 필요합니다.",
+				}),
+				abort: () => {},
+			};
+		}
 
-			if (onProgress) {
-				xhr.upload.addEventListener("progress", (e) => {
-					if (e.lengthComputable) {
-						const percentComplete = (e.loaded / e.total) * 100;
-						onProgress(percentComplete);
-					}
-				});
-			}
+		const xhr = new XMLHttpRequest();
+		let isAborted = false;
 
+		const abort = () => {
+			isAborted = true;
+			xhr.abort();
+		};
+
+		if (onProgress) {
+			xhr.upload.addEventListener("progress", (e) => {
+				if (e.lengthComputable) {
+					const percentComplete = (e.loaded / e.total) * 100;
+					onProgress(percentComplete);
+				}
+			});
+		}
+
+		const promise = new Promise((resolve, reject) => {
 			xhr.addEventListener("load", () => {
 				if (xhr.status >= 200 && xhr.status < 300) {
 					resolve(JSON.parse(xhr.responseText));
@@ -152,12 +168,21 @@ export const imageAPI = {
 				});
 			});
 
+			xhr.addEventListener("abort", () => {
+				if (isAborted) {
+					reject({
+						name: 'AbortError',
+						message: 'Upload cancelled',
+					});
+				}
+			});
+
 			xhr.open("POST", `${API_BASE_URL}/images/upload`);
 			xhr.setRequestHeader("Authorization", `Bearer ${token}`);
 			xhr.send(formData);
-
-			return () => xhr.abort();
 		});
+
+		return { promise, abort };
 	},
 
 	list: async () => {
