@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React, { useEffect, useState } from "react";
 import * as s from "../style/MainPageStyle";
 import { authAPI, imageAPI } from "../../api/api";
@@ -18,6 +17,31 @@ import {
 	faCircleCheck,
 	faFileImage,
 } from "@fortawesome/free-solid-svg-icons";
+
+const studentNameMap = {
+	"s23037@gsm.hs.kr": "김동학",
+	"s23038@gsm.hs.kr": "김서준",
+	"s23039@gsm.hs.kr": "김시후",
+	"s23040@gsm.hs.kr": "김예찬",
+	"s23041@gsm.hs.kr": "김유성",
+	"s23042@gsm.hs.kr": "김은후",
+	"s23043@gsm.hs.kr": "나윤후",
+	"s23044@gsm.hs.kr": "민우석",
+	"s23045@gsm.hs.kr": "박미리",
+	"s23046@gsm.hs.kr": "박민준",
+	"s23047@gsm.hs.kr": "백송주",
+	"s23048@gsm.hs.kr": "변승규",
+	"s23049@gsm.hs.kr": "변정현",
+	"s23050@gsm.hs.kr": "서지완",
+	"s23051@gsm.hs.kr": "이건주",
+	"s23052@gsm.hs.kr": "정승표",
+	"s23053@gsm.hs.kr": "주경주",
+	"s23054@gsm.hs.kr": "진건희",
+};
+
+const getNameFromEmail = (email) => {
+	return studentNameMap[email] || email;
+};
 
 const MainPage = () => {
 	const [currentPage, setCurrentPage] = useState("home");
@@ -91,7 +115,6 @@ const MainPage = () => {
 		for (let i = 0; i < files.length; i++) {
 			const file = files[i];
 
-			// 파일 타입 체크
 			if (!allowedTypes.includes(file.type)) {
 				window.alert(
 					`${file.name}: JPG, PNG, GIF 형식의 이미지만 업로드 가능합니다.`
@@ -99,7 +122,6 @@ const MainPage = () => {
 				continue;
 			}
 
-			// 파일 크기 체크 (10MB)
 			if (file.size > 10 * 1024 * 1024) {
 				window.alert(
 					`${file.name}: 파일 크기는 10MB를 초과할 수 없습니다.`
@@ -134,7 +156,6 @@ const MainPage = () => {
 				completedCount++;
 			}
 
-			// 업로드 완료 후 목록 갱신
 			await fetchImages();
 			await fetchMyImages();
 
@@ -769,7 +790,8 @@ const MainPage = () => {
 													alt={image.originalName}
 												/>
 												<s.UploadedByText>
-													{image.uploadedBy}
+													{image.uploadedByName ||
+														getNameFromEmail(image.uploadedBy)}
 												</s.UploadedByText>
 											</s.GalleryImageContainer>
 										))}

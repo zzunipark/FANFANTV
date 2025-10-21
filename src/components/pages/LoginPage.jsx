@@ -4,13 +4,17 @@ import * as s from "../style/LoginPageStyle";
 import { authAPI } from "../../api/api";
 
 const LoginPage = () => {
-	const [email, setEmail] = useState("");
+	const [selectedNumber, setSelectedNumber] = useState("");
 	const [password, setPassword] = useState("");
 	const [errorText, setErrorText] = useState("");
 	const [isLoading, setIsLoading] = useState(false);
 	const navigate = useNavigate();
 
-	// 이미 로그인된 경우 메인 페이지로 리다이렉트
+	const studentNumbers = Array.from(
+		{ length: 18 },
+		(_, i) => `s230${37 + i}`
+	);
+
 	useEffect(() => {
 		if (authAPI.isLoggedIn()) {
 			navigate("/");
@@ -24,9 +28,9 @@ const LoginPage = () => {
 			setIsLoading(true);
 			setErrorText("");
 
+			const email = `${selectedNumber}@gsm.hs.kr`;
 			await authAPI.login(email, password);
 
-			// 로그인 성공 시 메인 페이지로 이동
 			navigate("/");
 		} catch (error) {
 			setErrorText(getErrorMessage(error.code || error.message));
@@ -72,15 +76,20 @@ const LoginPage = () => {
 				</Link>
 				<s.Formbox onSubmit={handleFormSubmit}>
 					<s.InputWrapper>
-						<s.InputLabel>이메일</s.InputLabel>
-						<s.EmailInputBox
-							type="email"
-							placeholder="example@email.com"
-							value={email}
-							onChange={(e) => setEmail(e.target.value)}
+						<s.InputLabel>학번</s.InputLabel>
+						<s.SelectBox
+							value={selectedNumber}
+							onChange={(e) => setSelectedNumber(e.target.value)}
 							required
 							disabled={isLoading}
-						/>
+						>
+							<option value="">학번을 선택하세요</option>
+							{studentNumbers.map((num) => (
+								<option key={num} value={num}>
+									{num}@gsm.hs.kr
+								</option>
+							))}
+						</s.SelectBox>
 					</s.InputWrapper>
 					<s.InputWrapper>
 						<s.InputLabel>비밀번호</s.InputLabel>

@@ -97,6 +97,38 @@ export const EmailInputBox = styled.input`
 	}
 `;
 
+export const SelectBox = styled.select`
+	width: 100%;
+	height: 55px;
+	background-color: #2f2f2f;
+	border-radius: 8px;
+	border: 2px solid transparent;
+	padding: 0 20px;
+	font-size: 16px;
+	font-weight: 400;
+	color: white;
+	transition: all 0.3s ease;
+	box-sizing: border-box;
+	cursor: pointer;
+
+	&:focus {
+		outline: none;
+		border-color: #e50914;
+		background-color: #3a3a3a;
+	}
+
+	&:disabled {
+		opacity: 0.6;
+		cursor: not-allowed;
+	}
+
+	option {
+		background-color: #2f2f2f;
+		color: white;
+		padding: 10px;
+	}
+`;
+
 export const PasswordInputBox = styled.input`
 	width: 100%;
 	height: 55px;

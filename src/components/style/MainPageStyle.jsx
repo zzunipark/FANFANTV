@@ -944,7 +944,6 @@ export const ZzunilabsText = styled.p`
 	margin-top: 10px;
 `;
 
-// 마이페이지 스타일
 export const MyPageContainer = styled.div`
 	min-height: calc(100vh - 250px);
 	background-color: rgb(27, 27, 27);

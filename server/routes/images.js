@@ -7,6 +7,31 @@ const authMiddleware = require("../middleware/auth");
 
 const router = express.Router();
 
+const studentNameMap = {
+	"s23037@gsm.hs.kr": "김동학",
+	"s23038@gsm.hs.kr": "김서준",
+	"s23039@gsm.hs.kr": "김시후",
+	"s23040@gsm.hs.kr": "김예찬",
+	"s23041@gsm.hs.kr": "김유성",
+	"s23042@gsm.hs.kr": "김은후",
+	"s23043@gsm.hs.kr": "나윤후",
+	"s23044@gsm.hs.kr": "민우석",
+	"s23045@gsm.hs.kr": "박미리",
+	"s23046@gsm.hs.kr": "박민준",
+	"s23047@gsm.hs.kr": "백송주",
+	"s23048@gsm.hs.kr": "변승규",
+	"s23049@gsm.hs.kr": "변정현",
+	"s23050@gsm.hs.kr": "서지완",
+	"s23051@gsm.hs.kr": "이건주",
+	"s23052@gsm.hs.kr": "정승표",
+	"s23053@gsm.hs.kr": "주경주",
+	"s23054@gsm.hs.kr": "진건희",
+};
+
+const getNameFromEmail = (email) => {
+	return studentNameMap[email] || email;
+};
+
 // uploads 폴더 생성
 const uploadsDir = path.join(__dirname, "../uploads");
 if (!fs.existsSync(uploadsDir)) {
@@ -117,6 +142,7 @@ router.get("/list", authMiddleware, async (req, res) => {
 			filename: img.filename,
 			originalName: img.original_name,
 			uploadedBy: img.uploaded_by,
+			uploadedByName: getNameFromEmail(img.uploaded_by),
 			size: img.file_size,
 			mimeType: img.mime_type,
 			createdAt: img.created_at,
@@ -148,6 +174,7 @@ router.get("/my-images", authMiddleware, async (req, res) => {
 			filename: img.filename,
 			originalName: img.original_name,
 			uploadedBy: img.uploaded_by,
+			uploadedByName: getNameFromEmail(img.uploaded_by),
 			size: img.file_size,
 			mimeType: img.mime_type,
 			createdAt: img.created_at,

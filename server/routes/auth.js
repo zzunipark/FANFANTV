@@ -5,6 +5,31 @@ const { userQueries } = require("../database");
 
 const router = express.Router();
 
+const studentNameMap = {
+	"s23037@gsm.hs.kr": "김동학",
+	"s23038@gsm.hs.kr": "김서준",
+	"s23039@gsm.hs.kr": "김시후",
+	"s23040@gsm.hs.kr": "김예찬",
+	"s23041@gsm.hs.kr": "김유성",
+	"s23042@gsm.hs.kr": "김은후",
+	"s23043@gsm.hs.kr": "나윤후",
+	"s23044@gsm.hs.kr": "민우석",
+	"s23045@gsm.hs.kr": "박미리",
+	"s23046@gsm.hs.kr": "박민준",
+	"s23047@gsm.hs.kr": "백송주",
+	"s23048@gsm.hs.kr": "변승규",
+	"s23049@gsm.hs.kr": "변정현",
+	"s23050@gsm.hs.kr": "서지완",
+	"s23051@gsm.hs.kr": "이건주",
+	"s23052@gsm.hs.kr": "정승표",
+	"s23053@gsm.hs.kr": "주경주",
+	"s23054@gsm.hs.kr": "진건희",
+};
+
+const getNameFromEmail = (email) => {
+	return studentNameMap[email] || email;
+};
+
 // 회원가입
 router.post("/signup", async (req, res) => {
 	try {
@@ -44,13 +69,15 @@ router.post("/signup", async (req, res) => {
 			});
 		}
 
-		// 비밀번호 해시화
 		const hashedPassword = await bcrypt.hash(password, 10);
 
-		// 사용자 생성
-		const result = await userQueries.create.run(email, hashedPassword);
+		const name = getNameFromEmail(email);
+		const result = await userQueries.create.run(
+			email,
+			hashedPassword,
+			name
+		);
 
-		// JWT 토큰 생성
 		const token = jwt.sign(
 			{ id: result.lastID, email },
 			process.env.JWT_SECRET,
@@ -64,6 +91,7 @@ router.post("/signup", async (req, res) => {
 			user: {
 				id: result.lastID,
 				email,
+				name,
 			},
 		});
 	} catch (error) {
@@ -123,6 +151,7 @@ router.post("/login", async (req, res) => {
 			user: {
 				id: user.id,
 				email: user.email,
+				name: user.name || getNameFromEmail(user.email),
 			},
 		});
 	} catch (error) {
@@ -189,6 +218,7 @@ router.get("/me", require("../middleware/auth"), async (req, res) => {
 			user: {
 				id: user.id,
 				email: user.email,
+				name: user.name || getNameFromEmail(user.email),
 				created_at: user.created_at,
 			},
 		});

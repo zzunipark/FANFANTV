@@ -1,192 +1,214 @@
-/* eslint-disable */
 import * as s from "../style/TermsOfServicePageStyle";
 import { Link } from "react-router-dom";
 
 const TermsOfServicePage = () => {
-  return (
-    <s.TermsOfServicecontainer>
-      <Link to="/">
-        <s.TermsOfServiceDesc>
-          메인 페이지로 이동하시려면 여기를 클릭하세요.
-        </s.TermsOfServiceDesc>
-      </Link>
-      <s.TermsOfServiceTitle>FANFANTV 서비스 이용약관</s.TermsOfServiceTitle>
-      <s.TermsOfServiceDesc>
-        FANFANTV는 인터넷 연결 지원 TV, 컴퓨터 및 기타 디바이스('FANFANTV 지원
-        디바이스')에서 인터넷을 통해 회원에게 엔터테인먼트 콘텐츠('FANFANTV
-        콘텐츠')를 제공하는 OTT 서비스입니다. 본 이용 약관은 귀하가 FANFANTV
-        서비스를 이용하는 데 적용됩니다. 본 이용 약관에 언급되는 'FANFANTV
-        서비스' 또는 '당사 서비스'는 모든 특성과 기능, 추천 콘텐츠와 후기,
-        FANFANTV 웹사이트 및 사용자 인터페이스뿐만 아니라 FANFANTV 서비스와
-        관련된 모든 콘텐츠와 소프트웨어를 포함하는 FANFANTV 콘텐츠의 검색 및
-        이용을 위해 FANFANTV 제공하는 개인 맞춤형 서비스를 의미합니다. 본 이용
-        약관에 언급된 '귀하'는 FANFANTV 계정을 생성하여 프리미엄 요금제를 이용할
-        경우 본인의 결제 수단에 일회성 요금이 청구되는 회원을 의미합니다.
-      </s.TermsOfServiceDesc>
-      <s.TermsOfServiceContentContainer>
-        <s.TermsOfServiceContentTitle>
-          1. 개인정보 보호
-        </s.TermsOfServiceContentTitle>
-        <s.TermsofServiceContentDesc>
-          1.1 FANFANTV는 사용자의 개인정보와 초상권을 보호하기 위해 다음과 같은
-          상황에서 사용자의 이용을 제한하거나 업로드된 파일을 영구적으로 삭제할
-          권리를 가집니다.
-          <s.TermsofServiceContentul>
-            <s.TermsofServiceContentli>
-              가. 업로드된 파일의 저작권자가 파일의 삭제를 요청한 경우
-            </s.TermsofServiceContentli>
-            <s.TermsofServiceContentli>
-              나. 업로드된 파일의 피사체가 파일의 삭제를 요청한 경우
-            </s.TermsofServiceContentli>
-            <s.TermsofServiceContentli>
-              다. 업로드된 파일이 불법적으로 유통되어 게시된 경우나 피사체의
-              허가 없이 업로드된 경우
-            </s.TermsofServiceContentli>
-            <s.TermsofServiceContentli>
-              라. 업로드된 파일이 피사체의 명예를 훼손하거나, 피사체의 사생활을
-              침해하는 경우
-            </s.TermsofServiceContentli>
-            <s.TermsofServiceContentli>
-              마. 업로드된 파일이 피사체의 초상권을 침해하는 경우
-            </s.TermsofServiceContentli>
-          </s.TermsofServiceContentul>
-          1.2 FANFANTV는 회원이 자신의 초상이 인터넷에 업로드되는것과, 타인의
-          초상을 인터넷에 업로드하는 것에 동의한 회원으로 간주합니다. 이는
-          FANFANTV에 가입 신청서를 제출하여 서비스 이용을 시작한 회원은,
-          인터넷에 자신의 초상이 업로드 되는 것을 충분히 인지하였으며, 추후에
-          자신의 초상이 인터넷, FANFANTV 외 다른 사이트에 업로드되는 것에 대해
-          불만을 제기할 수 없음을 의미합니다.
-        </s.TermsofServiceContentDesc>
-        <s.TermsOfServiceContentTitle>
-          2. FANFANTV 서비스
-        </s.TermsOfServiceContentTitle>
-        <s.TermsofServiceContentDesc>
-          2.1 FANFANTV 서비스의 회원이 되려면 최소한 15세 이상이어야 합니다.
-          <br />
-          <br />
-          2.2 FANFANTV 서비스와 그 서비스를 통해 이용하는 모든 콘텐츠는 회원의
-          개인적이고 비상업적인 용도로만 사용되어야 하며, 다른 개인과 공유해서는
-          안 됩니다. FANFANTV 멤버십 가입 동안 회원에게 FANFANTV 서비스 및
-          FANFANTV 콘텐츠를 제한적이고 비독점적으로 사용할 권한이 부여됩니다. 이
-          외의 권리, 소유권 또는 이권은 회원에게 양도되지 않습니다. 또한 회원은
-          대중 공연을 목적으로 FANFANTV 서비스를 사용해서는 안 됩니다.
-          <br />
-          <br />
-          2.3 회원은 모든 관련 법률, 규정, FANFANTV 서비스 및 콘텐츠 사용과
-          관련된 기타 제한에 동의합니다. 회원은 FANFANTV 서비스를 사용할 때
-          다음과 같은 행동을 하지 않는 데 동의합니다.
-          <s.TermsofServiceContentul>
-            <s.TermsofServiceContentli>
-              가. FANFANTV 서비스에 포함되어 있거나 FANFANTV 서비스를 통해 얻은
-              콘텐츠와 정보를 아카이브, 다운로드, 복제, 배포, 수정, 전시, 시연,
-              출판, 라이선스 부여, 2차 저작물로 생성, 판매 권유 또는 상업적으로
-              이용하는 것
-            </s.TermsofServiceContentli>
-            <s.TermsofServiceContentli>
-              나. 그래픽 사용자 인터페이스, 광고 또는 광고 기능, 저작권 고지 및
-              상표를 포함한 FANFANTV 서비스 내 콘텐츠 보호 기능 또는 기타 요소를
-              우회, 삭제, 수정, 무효화, 약화, 차단, 가림 또는 훼손하는 것
-            </s.TermsofServiceContentli>
-            <s.TermsofServiceContentli>
-              다. FANFANTV 서비스를 접근하는 데 로봇, 스파이더, 스크레이퍼 또는
-              기타 자동화 수단을 이용하는 것
-            </s.TermsofServiceContentli>
-            <s.TermsofServiceContentli>
-              라. FANFANTV 서비스를 통해 접근 가능한 소프트웨어 또는 기타 제품,
-              프로세스를 역컴파일, 리버스 엔지니어링 또는 역어셈블 하는 것
-            </s.TermsofServiceContentli>
-            <s.TermsofServiceContentli>
-              마. 코드나 제품을 삽입하거나 어떤 방식으로든 FANFANTV 서비스
-              콘텐츠를 조작하는 것
-            </s.TermsofServiceContentli>
-            <s.TermsofServiceContentli>
-              바. 데이터 마이닝, 데이터 수집 또는 추출 방법을 사용하는 것
-            </s.TermsofServiceContentli>
-            <s.TermsofServiceContentli>
-              사. 소프트웨어 바이러스나 기타 컴퓨터 코드, 파일이나 프로그램을
-              포함하여 FANFANTV 서비스와 관련된 컴퓨터 소프트웨어나 하드웨어
-              또는 통신 장비의 기능을 방해, 파괴 또는 제한하기 위해 설계된
-              자료를 업로드, 게시, 이메일 전송, 또는 다른 방식으로 발송,
-              전송하는 것
-            </s.TermsofServiceContentli>
-            <s.TermsofServiceContentli>
-              아. FANFANTV에 업로드된 미디어를 제 3자에게 보여주거나 제 3자가
-              보는 것을 허용 또는 방관하는 것
-            </s.TermsofServiceContentli>
-          </s.TermsofServiceContentul>
-          회원이 본 이용 약관의 2.1, 2.2 또는 2.3을 위반하거나 불법복제,
-          명의도용, 신용카드 부정 사용, 기타 이에 준하는 사기행위 또는
-          불법행위에 가담하는 경우, FANFANTV 회원의 서비스 사용을 종료시키거나
-          제한할 수 있습니다.
-          <br />
-          <br />
-          2.4. FANFANTV 콘텐츠의 화면 품질은 디바이스에 따라 달라질 수 있으며
-          지역, 사용 가능한 인터넷 대역폭이나 인터넷 접속 속도 등 다양한 요인의
-          영향을 받을 수 있습니다. HD, UHD 및 HDR의 이용 가능 여부는 사용 중인
-          인터넷 서비스 및 디바이스 성능 또는 업로드된 파일에 따라 결정됩니다.
-          모든 콘텐츠가 HD, UHD, HDR 등 모든 화질로 제공되는 것은 아닙니다. HD
-          영상 화질(720P 이상의 해상도)을 유지하기 위한 최소 연결 속도는
-          스트리밍당 4.0Mbps이나, 양호한 영상 화질을 위해서는 더 높은 속도를
-          권장합니다. 풀 HD 영상 화질(1080p 이상의 해상도)을 수신하기 위한 권장
-          연결 속도는 스트리밍당 7.5Mbps 이상입니다. UHD 영상 화질(4K 이상의
-          해상도)을 수신하기 위한 권장 연결 속도는 스트리밍당 20.0Mbps
-          이상입니다. 모든 인터넷 접속 요금은 사용자 부담입니다. 부과될 수 있는
-          인터넷 데이터 이용 요금에 대한 세부사항은 인터넷 서비스 제공업체에
-          확인하시기 바랍니다. FANFANTV 콘텐츠 시청을 시작하는 데 소요되는
-          시간은 지역, 해당 시점에 사용 가능한 인터넷 대역폭, 선택한 콘텐츠,
-          FANFANTV 지원 디바이스의 설정 등 다양한 요인에 따라 달라질 수
-          있습니다.
-          <br />
-          <br />
-          2.5 FANFANTV에 한번 업로드된 파일은 본인 의지로 삭제가 불가능합니다.
-          파일을 업로드하기 전 신중히 생각하시기 바랍니다.
-        </s.TermsofServiceContentDesc>
-        <s.TermsOfServiceContentTitle>
-          3. 비밀번호 및 계정 액세스, 보안
-        </s.TermsOfServiceContentTitle>
-        <s.TermsofServiceContentDesc>
-          회원은 FANFANTV 계정 사용으로 인한 모든 활동에 대해 책임이 있습니다.
-          회원이 타인에게 계정에 액세스할 수 있도록 허용하는 경우(해당 계정에
-          대해 제공되는 시청 기록 관련 정보에 대한 액세스 포함), 해당 타인이
-          회원을 대신하고 있으며 그 타인이 취하는 계정에 대한 모든 변경
-          사항(멤버십의 변경을 포함하되 이에 국한되지 않음)에 회원이 구속된다는
-          데에 동의하는 것으로 간주됩니다. 계정해킹, 명의도용, 신용카드
-          부정사용이나 기타 이에 준하는 사기행위 또는 불법행위로부터 회원 및
-          FANFANTV 등을 보호하기 위해 FANFANTV는 회원 계정을 종료하거나 보류
-          조치를 취할 수 있습니다.
-        </s.TermsofServiceContentDesc>
-        <s.TermsOfServiceContentTitle>
-          4. 보증 및 책임의 제한
-        </s.TermsOfServiceContentTitle>
-        <s.TermsofServiceContentDesc>
-          FANFANTV는 미디어 공유 중개자이며, FANFANTV 프리미엄 콘텐츠를
-          제외하고는 미디어 공유의 당사자가 아닙니다. 미디어에 관한 모든 책임은
-          각 회원에게 있습니다. FANFANTV 프리미엄 콘텐츠는 모두 피사체와
-          저작권자의 허가를 받고 있으며, 적합한 대가를 제공합니다. FANFANTV는
-          회원이 FANFANTV 서비스를 통해 접근할 수 있는 콘텐츠의 완전성, 정확성
-          또는 적법성을 보증하지 않습니다. FANFANTV의 유료 멤버십 결제 이후 최소
-          30일의 서비스 제공을 보장합니다. 30일 충족 전 FANFANTV 서비스 종료
-          등의 이유로 서비스 제공이 어려워질 경우, FANFANTV는 회원에게 전액
-          환불을 보장합니다. FANFANTV는 안정적인 서비스 제공을 위해 노력합니다.
-          다만, FANFANTV의 책임 없이 서비스 중단이나 오류가 발생할 수 있습니다.
-          FANFANTV는 고의 또는 과실로 인하여 회원이 입은 손해를 배상하되, 특별한
-          사정으로 통상적인 범위를 벗어나는 손해는 FANFANTV의 고의 또는 중대한
-          과실을 제외하고는 책임지지 않습니다. 또한 FANFANTV 서비스에 타사
-          광고가 표시될 수 있습니다. FANFANTV는 광고 대상 제품 또는 서비스를
-          보증하거나 후원하지 않으며, 인터랙티브 광고 참여를 포함하여 광고주와의
-          모든 상호 작용은 회원 본인이 자신의 선택에 따라 책임을 부담합니다.
-        </s.TermsofServiceContentDesc>
-        <s.TermsofServiceAdditionalDesc>
-          최신 수정 : 2023.10.06
-        </s.TermsofServiceAdditionalDesc>
-        <s.TermsofServiceAdditionalDesc>
-          별침 1. 본 약관은 사전 고지 없이 언제든지 수정될 수 있으며, 만약
-          약관이 수정된다면 FANFANTV는 당사 웹사이트 메인 화면에 약관 변경
-          사실을 안내할 것입니다.
-        </s.TermsofServiceAdditionalDesc>
-      </s.TermsOfServiceContentContainer>
-    </s.TermsOfServicecontainer>
-  );
+	return (
+		<s.TermsOfServicecontainer>
+			<Link to="/">
+				<s.TermsOfServiceDesc>
+					메인 페이지로 이동하시려면 여기를 클릭하세요.
+				</s.TermsOfServiceDesc>
+			</Link>
+			<s.TermsOfServiceTitle>
+				FANFANTV 서비스 이용약관
+			</s.TermsOfServiceTitle>
+			<s.TermsOfServiceDesc>
+				FANFANTV는 인터넷 연결 지원 TV, 컴퓨터 및 기타
+				디바이스('FANFANTV 지원 디바이스')에서 인터넷을 통해 회원에게
+				엔터테인먼트 콘텐츠('FANFANTV 콘텐츠')를 제공하는 OTT
+				서비스입니다. 본 이용 약관은 귀하가 FANFANTV 서비스를 이용하는
+				데 적용됩니다. 본 이용 약관에 언급되는 'FANFANTV 서비스' 또는
+				'당사 서비스'는 모든 특성과 기능, 추천 콘텐츠와 후기, FANFANTV
+				웹사이트 및 사용자 인터페이스뿐만 아니라 FANFANTV 서비스와
+				관련된 모든 콘텐츠와 소프트웨어를 포함하는 FANFANTV 콘텐츠의
+				검색 및 이용을 위해 FANFANTV 제공하는 개인 맞춤형 서비스를
+				의미합니다. 본 이용 약관에 언급된 '귀하'는 FANFANTV 계정을
+				생성하여 프리미엄 요금제를 이용할 경우 본인의 결제 수단에 일회성
+				요금이 청구되는 회원을 의미합니다.
+			</s.TermsOfServiceDesc>
+			<s.TermsOfServiceContentContainer>
+				<s.TermsOfServiceContentTitle>
+					1. 개인정보 보호
+				</s.TermsOfServiceContentTitle>
+				<s.TermsofServiceContentDesc>
+					1.1 FANFANTV는 사용자의 개인정보와 초상권을 보호하기 위해
+					다음과 같은 상황에서 사용자의 이용을 제한하거나 업로드된
+					파일을 영구적으로 삭제할 권리를 가집니다.
+					<s.TermsofServiceContentul>
+						<s.TermsofServiceContentli>
+							가. 업로드된 파일의 저작권자가 파일의 삭제를 요청한
+							경우
+						</s.TermsofServiceContentli>
+						<s.TermsofServiceContentli>
+							나. 업로드된 파일의 피사체가 파일의 삭제를 요청한
+							경우
+						</s.TermsofServiceContentli>
+						<s.TermsofServiceContentli>
+							다. 업로드된 파일이 불법적으로 유통되어 게시된
+							경우나 피사체의 허가 없이 업로드된 경우
+						</s.TermsofServiceContentli>
+						<s.TermsofServiceContentli>
+							라. 업로드된 파일이 피사체의 명예를 훼손하거나,
+							피사체의 사생활을 침해하는 경우
+						</s.TermsofServiceContentli>
+						<s.TermsofServiceContentli>
+							마. 업로드된 파일이 피사체의 초상권을 침해하는 경우
+						</s.TermsofServiceContentli>
+					</s.TermsofServiceContentul>
+					1.2 FANFANTV는 회원이 자신의 초상이 인터넷에 업로드되는것과,
+					타인의 초상을 인터넷에 업로드하는 것에 동의한 회원으로
+					간주합니다. 이는 FANFANTV에 가입 신청서를 제출하여 서비스
+					이용을 시작한 회원은, 인터넷에 자신의 초상이 업로드 되는
+					것을 충분히 인지하였으며, 추후에 자신의 초상이 인터넷,
+					FANFANTV 외 다른 사이트에 업로드되는 것에 대해 불만을 제기할
+					수 없음을 의미합니다.
+				</s.TermsofServiceContentDesc>
+				<s.TermsOfServiceContentTitle>
+					2. FANFANTV 서비스
+				</s.TermsOfServiceContentTitle>
+				<s.TermsofServiceContentDesc>
+					2.1 FANFANTV 서비스의 회원이 되려면 최소한 15세 이상이어야
+					합니다.
+					<br />
+					<br />
+					2.2 FANFANTV 서비스와 그 서비스를 통해 이용하는 모든
+					콘텐츠는 회원의 개인적이고 비상업적인 용도로만 사용되어야
+					하며, 다른 개인과 공유해서는 안 됩니다. FANFANTV 멤버십 가입
+					동안 회원에게 FANFANTV 서비스 및 FANFANTV 콘텐츠를
+					제한적이고 비독점적으로 사용할 권한이 부여됩니다. 이 외의
+					권리, 소유권 또는 이권은 회원에게 양도되지 않습니다. 또한
+					회원은 대중 공연을 목적으로 FANFANTV 서비스를 사용해서는 안
+					됩니다.
+					<br />
+					<br />
+					2.3 회원은 모든 관련 법률, 규정, FANFANTV 서비스 및 콘텐츠
+					사용과 관련된 기타 제한에 동의합니다. 회원은 FANFANTV
+					서비스를 사용할 때 다음과 같은 행동을 하지 않는 데
+					동의합니다.
+					<s.TermsofServiceContentul>
+						<s.TermsofServiceContentli>
+							가. FANFANTV 서비스에 포함되어 있거나 FANFANTV
+							서비스를 통해 얻은 콘텐츠와 정보를 아카이브,
+							다운로드, 복제, 배포, 수정, 전시, 시연, 출판,
+							라이선스 부여, 2차 저작물로 생성, 판매 권유 또는
+							상업적으로 이용하는 것
+						</s.TermsofServiceContentli>
+						<s.TermsofServiceContentli>
+							나. 그래픽 사용자 인터페이스, 광고 또는 광고 기능,
+							저작권 고지 및 상표를 포함한 FANFANTV 서비스 내
+							콘텐츠 보호 기능 또는 기타 요소를 우회, 삭제, 수정,
+							무효화, 약화, 차단, 가림 또는 훼손하는 것
+						</s.TermsofServiceContentli>
+						<s.TermsofServiceContentli>
+							다. FANFANTV 서비스를 접근하는 데 로봇, 스파이더,
+							스크레이퍼 또는 기타 자동화 수단을 이용하는 것
+						</s.TermsofServiceContentli>
+						<s.TermsofServiceContentli>
+							라. FANFANTV 서비스를 통해 접근 가능한 소프트웨어
+							또는 기타 제품, 프로세스를 역컴파일, 리버스
+							엔지니어링 또는 역어셈블 하는 것
+						</s.TermsofServiceContentli>
+						<s.TermsofServiceContentli>
+							마. 코드나 제품을 삽입하거나 어떤 방식으로든
+							FANFANTV 서비스 콘텐츠를 조작하는 것
+						</s.TermsofServiceContentli>
+						<s.TermsofServiceContentli>
+							바. 데이터 마이닝, 데이터 수집 또는 추출 방법을
+							사용하는 것
+						</s.TermsofServiceContentli>
+						<s.TermsofServiceContentli>
+							사. 소프트웨어 바이러스나 기타 컴퓨터 코드, 파일이나
+							프로그램을 포함하여 FANFANTV 서비스와 관련된 컴퓨터
+							소프트웨어나 하드웨어 또는 통신 장비의 기능을 방해,
+							파괴 또는 제한하기 위해 설계된 자료를 업로드, 게시,
+							이메일 전송, 또는 다른 방식으로 발송, 전송하는 것
+						</s.TermsofServiceContentli>
+						<s.TermsofServiceContentli>
+							아. FANFANTV에 업로드된 미디어를 제 3자에게
+							보여주거나 제 3자가 보는 것을 허용 또는 방관하는 것
+						</s.TermsofServiceContentli>
+					</s.TermsofServiceContentul>
+					회원이 본 이용 약관의 2.1, 2.2 또는 2.3을 위반하거나
+					불법복제, 명의도용, 신용카드 부정 사용, 기타 이에 준하는
+					사기행위 또는 불법행위에 가담하는 경우, FANFANTV 회원의
+					서비스 사용을 종료시키거나 제한할 수 있습니다.
+					<br />
+					<br />
+					2.4. FANFANTV 콘텐츠의 화면 품질은 디바이스에 따라 달라질 수
+					있으며 지역, 사용 가능한 인터넷 대역폭이나 인터넷 접속 속도
+					등 다양한 요인의 영향을 받을 수 있습니다. HD, UHD 및 HDR의
+					이용 가능 여부는 사용 중인 인터넷 서비스 및 디바이스 성능
+					또는 업로드된 파일에 따라 결정됩니다. 모든 콘텐츠가 HD, UHD,
+					HDR 등 모든 화질로 제공되는 것은 아닙니다. HD 영상 화질(720P
+					이상의 해상도)을 유지하기 위한 최소 연결 속도는 스트리밍당
+					4.0Mbps이나, 양호한 영상 화질을 위해서는 더 높은 속도를
+					권장합니다. 풀 HD 영상 화질(1080p 이상의 해상도)을 수신하기
+					위한 권장 연결 속도는 스트리밍당 7.5Mbps 이상입니다. UHD
+					영상 화질(4K 이상의 해상도)을 수신하기 위한 권장 연결 속도는
+					스트리밍당 20.0Mbps 이상입니다. 모든 인터넷 접속 요금은
+					사용자 부담입니다. 부과될 수 있는 인터넷 데이터 이용 요금에
+					대한 세부사항은 인터넷 서비스 제공업체에 확인하시기
+					바랍니다. FANFANTV 콘텐츠 시청을 시작하는 데 소요되는 시간은
+					지역, 해당 시점에 사용 가능한 인터넷 대역폭, 선택한 콘텐츠,
+					FANFANTV 지원 디바이스의 설정 등 다양한 요인에 따라 달라질
+					수 있습니다.
+					<br />
+					<br />
+					2.5 FANFANTV에 한번 업로드된 파일은 본인 의지로 삭제가
+					불가능합니다. 파일을 업로드하기 전 신중히 생각하시기
+					바랍니다.
+				</s.TermsofServiceContentDesc>
+				<s.TermsOfServiceContentTitle>
+					3. 비밀번호 및 계정 액세스, 보안
+				</s.TermsOfServiceContentTitle>
+				<s.TermsofServiceContentDesc>
+					회원은 FANFANTV 계정 사용으로 인한 모든 활동에 대해 책임이
+					있습니다. 회원이 타인에게 계정에 액세스할 수 있도록 허용하는
+					경우(해당 계정에 대해 제공되는 시청 기록 관련 정보에 대한
+					액세스 포함), 해당 타인이 회원을 대신하고 있으며 그 타인이
+					취하는 계정에 대한 모든 변경 사항(멤버십의 변경을 포함하되
+					이에 국한되지 않음)에 회원이 구속된다는 데에 동의하는 것으로
+					간주됩니다. 계정해킹, 명의도용, 신용카드 부정사용이나 기타
+					이에 준하는 사기행위 또는 불법행위로부터 회원 및 FANFANTV
+					등을 보호하기 위해 FANFANTV는 회원 계정을 종료하거나 보류
+					조치를 취할 수 있습니다.
+				</s.TermsofServiceContentDesc>
+				<s.TermsOfServiceContentTitle>
+					4. 보증 및 책임의 제한
+				</s.TermsOfServiceContentTitle>
+				<s.TermsofServiceContentDesc>
+					FANFANTV는 미디어 공유 중개자이며, FANFANTV 프리미엄
+					콘텐츠를 제외하고는 미디어 공유의 당사자가 아닙니다.
+					미디어에 관한 모든 책임은 각 회원에게 있습니다. FANFANTV
+					프리미엄 콘텐츠는 모두 피사체와 저작권자의 허가를 받고
+					있으며, 적합한 대가를 제공합니다. FANFANTV는 회원이 FANFANTV
+					서비스를 통해 접근할 수 있는 콘텐츠의 완전성, 정확성 또는
+					적법성을 보증하지 않습니다. FANFANTV의 유료 멤버십 결제 이후
+					최소 30일의 서비스 제공을 보장합니다. 30일 충족 전 FANFANTV
+					서비스 종료 등의 이유로 서비스 제공이 어려워질 경우,
+					FANFANTV는 회원에게 전액 환불을 보장합니다. FANFANTV는
+					안정적인 서비스 제공을 위해 노력합니다. 다만, FANFANTV의
+					책임 없이 서비스 중단이나 오류가 발생할 수 있습니다.
+					FANFANTV는 고의 또는 과실로 인하여 회원이 입은 손해를
+					배상하되, 특별한 사정으로 통상적인 범위를 벗어나는 손해는
+					FANFANTV의 고의 또는 중대한 과실을 제외하고는 책임지지
+					않습니다. 또한 FANFANTV 서비스에 타사 광고가 표시될 수
+					있습니다. FANFANTV는 광고 대상 제품 또는 서비스를 보증하거나
+					후원하지 않으며, 인터랙티브 광고 참여를 포함하여 광고주와의
+					모든 상호 작용은 회원 본인이 자신의 선택에 따라 책임을
+					부담합니다.
+				</s.TermsofServiceContentDesc>
+				<s.TermsofServiceAdditionalDesc>
+					최신 수정 : 2023.10.06
+				</s.TermsofServiceAdditionalDesc>
+				<s.TermsofServiceAdditionalDesc>
+					별침 1. 본 약관은 사전 고지 없이 언제든지 수정될 수 있으며,
+					만약 약관이 수정된다면 FANFANTV는 당사 웹사이트 메인 화면에
+					약관 변경 사실을 안내할 것입니다.
+				</s.TermsofServiceAdditionalDesc>
+			</s.TermsOfServiceContentContainer>
+		</s.TermsOfServicecontainer>
+	);
 };
 
 export default TermsOfServicePage;
