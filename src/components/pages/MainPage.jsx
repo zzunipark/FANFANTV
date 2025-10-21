@@ -791,7 +791,9 @@ const MainPage = () => {
 												/>
 												<s.UploadedByText>
 													{image.uploadedByName ||
-														getNameFromEmail(image.uploadedBy)}
+														getNameFromEmail(
+															image.uploadedBy
+														)}
 												</s.UploadedByText>
 											</s.GalleryImageContainer>
 										))}
