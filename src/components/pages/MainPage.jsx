@@ -192,10 +192,10 @@ const MainPage = () => {
 						((completedCount + progress / 100) / totalFiles) * 100;
 					setUploadProgress(overallProgress);
 				});
-				
+
 				abortControllers.push(abort);
 				setUploadAbortFn(() => () => {
-					abortControllers.forEach(ctrl => ctrl());
+					abortControllers.forEach((ctrl) => ctrl());
 				});
 
 				await promise;
@@ -209,7 +209,10 @@ const MainPage = () => {
 			setUploadProgress(0);
 			setSelectedFiles([]);
 		} catch (error) {
-			if (error.name === 'AbortError' || error.message === 'Upload cancelled') {
+			if (
+				error.name === "AbortError" ||
+				error.message === "Upload cancelled"
+			) {
 				window.alert("업로드가 취소되었습니다.");
 			} else {
 				console.error("업로드 실패:", error);
@@ -889,7 +892,9 @@ const MainPage = () => {
 																: faHeartRegular
 														}
 													/>
-													<span>{image.likeCount || 0}</span>
+													<span>
+														{image.likeCount || 0}
+													</span>
 												</s.LikeButton>
 											</s.GalleryImageContainer>
 										))}

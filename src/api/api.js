@@ -171,8 +171,8 @@ export const imageAPI = {
 			xhr.addEventListener("abort", () => {
 				if (isAborted) {
 					reject({
-						name: 'AbortError',
-						message: 'Upload cancelled',
+						name: "AbortError",
+						message: "Upload cancelled",
 					});
 				}
 			});
