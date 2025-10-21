@@ -1,29 +1,39 @@
-/* eslint-disable */
+import React from "react";
+import { useNavigate } from "react-router-dom";
 import * as s from "../style/SignupPageStyle";
-import { Link } from "react-router-dom";
 
 const SignupPage = () => {
-  return (
-    <s.SignupContainer>
-      <s.NoticeTitleText>
-        FANFANTV는 회원제 서비스로, 사전 허가된 사용자만 이용이 가능합니다.
-      </s.NoticeTitleText>
-      <s.NoticeDescText>
-        만약, 허가 권한이 있는 경우 아래의 이메일 주소로 연락주시거나, <br />
-        FANFANTV 디스코드를 통해 문의해주시기 바랍니다.
-        <br />
-        <br />
-        admin@fanfantv.online
-        <br />
-        <br />
-      </s.NoticeDescText>
-      <Link to="/">
-        <s.NoticeDescText>
-          메인 페이지로 이동하시려면 여기를 클릭하세요.
-        </s.NoticeDescText>
-      </Link>
-    </s.SignupContainer>
-  );
+	const navigate = useNavigate();
+
+	return (
+		<s.SignupContainer>
+			<s.IconWrapper>
+				<s.LockIcon>🔒</s.LockIcon>
+			</s.IconWrapper>
+			<s.NoticeTitleText>회원제 서비스 안내</s.NoticeTitleText>
+			<s.NoticeDescText>
+				FANFANTV는 사전 허가된 사용자만 이용 가능한
+				<br />
+				회원제 서비스입니다.
+			</s.NoticeDescText>
+			<s.ContactBox>
+				<s.ContactTitle>가입 문의</s.ContactTitle>
+				<s.ContactItem>
+					<s.ContactLabel>이메일</s.ContactLabel>
+					<s.ContactLink href="mailto:admin@fanfantv.online">
+						admin@fanfantv.online
+					</s.ContactLink>
+				</s.ContactItem>
+				<s.ContactItem>
+					<s.ContactLabel>디스코드</s.ContactLabel>
+					<s.ContactText>FANFANTV 공식 디스코드</s.ContactText>
+				</s.ContactItem>
+			</s.ContactBox>
+			<s.BackButton onClick={() => navigate("/")}>
+				메인으로 돌아가기
+			</s.BackButton>
+		</s.SignupContainer>
+	);
 };
 
 export default SignupPage;

@@ -89,6 +89,12 @@ const GlobalStyle = createGlobalStyle`
   text-decoration: none;
   font-family: 'Pretendard', sans-serif;
 }
+
+html, body, #root {
+  height: 100%;
+  background-color: rgb(27, 27, 27);
+  overflow-x: hidden;
+}
 `;
 
 export default GlobalStyle;

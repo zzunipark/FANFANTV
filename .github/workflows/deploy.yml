@@ -1,0 +1,71 @@
+name: Deploy to Self-Hosted Server
+
+on:
+    push:
+        branches:
+            - main
+    workflow_dispatch:
+
+jobs:
+    deploy:
+        runs-on: self-hosted
+
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: "18"
+                  cache: "npm"
+
+            - name: Install frontend dependencies
+              run: npm ci
+
+            - name: Build frontend
+              run: npm run build
+              env:
+                  CI: false
+
+            - name: Install backend dependencies
+              working-directory: ./server
+              run: npm ci
+
+            - name: Stop existing services
+              run: |
+                  pm2 stop fanfantv-server || true
+                  pm2 delete fanfantv-server || true
+              continue-on-error: true
+
+            - name: Deploy backend
+              working-directory: ./server
+              run: |
+                  if [ ! -f .env ]; then
+                    echo "Warning: .env file not found"
+                  fi
+
+                  pm2 start server.js --name fanfantv-server
+                  pm2 save
+
+            - name: Deploy frontend
+              run: |
+                  pm2 serve build 3000 --name fanfantv-frontend --spa
+
+                  echo "Frontend deployment completed"
+
+            - name: Health check
+              run: |
+                  sleep 5
+                  pm2 status
+
+                  curl -f http://localhost:5000/health || exit 1
+
+            - name: Send deployment notification
+              if: always()
+              run: |
+                  if [ "${{ job.status }}" == "success" ]; then
+                    echo "✅ Deployment successful!"
+                  else
+                    echo "❌ Deployment failed!"
+                  fi
