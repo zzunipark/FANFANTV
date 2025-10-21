@@ -59,7 +59,7 @@ jobs:
                   sleep 5
                   pm2 status
 
-                  curl -f http://localhost:5000/health || exit 1
+                  curl -f http://localhost:5000/api/health || exit 1
 
             - name: Send deployment notification
               if: always()

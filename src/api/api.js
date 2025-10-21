@@ -49,11 +49,10 @@ const fetchAPI = async (endpoint, options = {}) => {
 	const data = await response.json();
 
 	if (!response.ok) {
-		throw {
-			status: response.status,
-			message: data.message || "요청 처리 중 오류가 발생했습니다.",
-			code: data.code,
-		};
+		const error = new Error(data.message || "요청 처리 중 오류가 발생했습니다.");
+		error.status = response.status;
+		error.code = data.code;
+		throw error;
 	}
 
 	return data;
@@ -178,7 +177,9 @@ export const imageAPI = {
 	},
 };
 
-export default {
+const api = {
 	authAPI,
 	imageAPI,
 };
+
+export default api;

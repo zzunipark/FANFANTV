@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import fanfantvtitlepngPath from "../assets/images/fanfantvtitle.png";
-import UploadImageBackgroundpngPath from "../assets/images/UploadImageLabel.png";
 import { Link } from "react-router-dom";
 
 export const LinkSubNav = styled(Link)`

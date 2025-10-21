@@ -93,13 +93,17 @@ const MainPage = () => {
 
 			// 파일 타입 체크
 			if (!allowedTypes.includes(file.type)) {
-				window.alert(`${file.name}: JPG, PNG, GIF 형식의 이미지만 업로드 가능합니다.`);
+				window.alert(
+					`${file.name}: JPG, PNG, GIF 형식의 이미지만 업로드 가능합니다.`
+				);
 				continue;
 			}
 
 			// 파일 크기 체크 (10MB)
 			if (file.size > 10 * 1024 * 1024) {
-				window.alert(`${file.name}: 파일 크기는 10MB를 초과할 수 없습니다.`);
+				window.alert(
+					`${file.name}: 파일 크기는 10MB를 초과할 수 없습니다.`
+				);
 				continue;
 			}
 
@@ -123,7 +127,8 @@ const MainPage = () => {
 
 			for (const file of selectedFiles) {
 				await imageAPI.upload(file, (progress) => {
-					const overallProgress = ((completedCount + progress / 100) / totalFiles) * 100;
+					const overallProgress =
+						((completedCount + progress / 100) / totalFiles) * 100;
 					setUploadProgress(overallProgress);
 				});
 				completedCount++;
@@ -923,9 +928,7 @@ const MainPage = () => {
 											type="file"
 											accept="image/jpg, image/jpeg, image/png, image/gif, image/webp"
 											onChange={(e) =>
-												handleFileSelect(
-													e.target.files
-												)
+												handleFileSelect(e.target.files)
 											}
 											id="file-upload"
 											disabled={isUploading}
@@ -948,36 +951,46 @@ const MainPage = () => {
 												: "이미지를 드래그하거나 클릭하세요"}
 										</s.UploadText>
 										<s.UploadSubText>
-											JPG, PNG, GIF, WEBP (최대 10MB) • 여러 파일 선택 가능
+											JPG, PNG, GIF, WEBP (최대 10MB) •
+											여러 파일 선택 가능
 										</s.UploadSubText>
 									</s.UploadImageLabelBox>
 
-									{selectedFiles.length > 0 && !isUploading && (
-										<s.UploadFileList>
-											{selectedFiles.map((file, index) => (
-												<s.UploadFileInfo key={index}>
-													<s.FileIcon>
-														<FontAwesomeIcon
-															icon={faFileImage}
-														/>
-													</s.FileIcon>
-													<s.FileDetails>
-														<s.FileName>
-															{file.name}
-														</s.FileName>
-														<s.FileSize>
-															{(
-																file.size /
-																1024 /
-																1024
-															).toFixed(2)}{" "}
-															MB
-														</s.FileSize>
-													</s.FileDetails>
-												</s.UploadFileInfo>
-											))}
-										</s.UploadFileList>
-									)}
+									{selectedFiles.length > 0 &&
+										!isUploading && (
+											<s.UploadFileList>
+												{selectedFiles.map(
+													(file, index) => (
+														<s.UploadFileInfo
+															key={index}
+														>
+															<s.FileIcon>
+																<FontAwesomeIcon
+																	icon={
+																		faFileImage
+																	}
+																/>
+															</s.FileIcon>
+															<s.FileDetails>
+																<s.FileName>
+																	{file.name}
+																</s.FileName>
+																<s.FileSize>
+																	{(
+																		file.size /
+																		1024 /
+																		1024
+																	).toFixed(
+																		2
+																	)}{" "}
+																	MB
+																</s.FileSize>
+															</s.FileDetails>
+														</s.UploadFileInfo>
+													)
+												)}
+											</s.UploadFileList>
+										)}
 
 									{isUploading && (
 										<>
@@ -993,22 +1006,24 @@ const MainPage = () => {
 										</>
 									)}
 
-									{selectedFiles.length > 0 && !isUploading && (
-										<s.UploadButtonGroup>
-											<s.UploadButton
-												onClick={handleImageUpload}
-											>
-												{selectedFiles.length}개 파일 업로드
-											</s.UploadButton>
-											<s.CancelUploadButton
-												onClick={() =>
-													setSelectedFiles([])
-												}
-											>
-												취소
-											</s.CancelUploadButton>
-										</s.UploadButtonGroup>
-									)}
+									{selectedFiles.length > 0 &&
+										!isUploading && (
+											<s.UploadButtonGroup>
+												<s.UploadButton
+													onClick={handleImageUpload}
+												>
+													{selectedFiles.length}개
+													파일 업로드
+												</s.UploadButton>
+												<s.CancelUploadButton
+													onClick={() =>
+														setSelectedFiles([])
+													}
+												>
+													취소
+												</s.CancelUploadButton>
+											</s.UploadButtonGroup>
+										)}
 
 									{isUploading && (
 										<s.UploadButtonGroup>
