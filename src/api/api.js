@@ -49,7 +49,9 @@ const fetchAPI = async (endpoint, options = {}) => {
 	const data = await response.json();
 
 	if (!response.ok) {
-		const error = new Error(data.message || "요청 처리 중 오류가 발생했습니다.");
+		const error = new Error(
+			data.message || "요청 처리 중 오류가 발생했습니다."
+		);
 		error.status = response.status;
 		error.code = data.code;
 		throw error;
