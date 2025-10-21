@@ -20,6 +20,22 @@ jobs:
           node-version: "18"
           cache: "npm"
 
+      - name: Copy environment files
+        run: |
+          if [ -f /root/.env.local ]; then
+            cp /root/.env.local .env.local
+            echo "✅ Copied /root/.env.local to project"
+          else
+            echo "⚠️  Warning: /root/.env.local not found"
+          fi
+
+          if [ -f /root/.env ]; then
+            cp /root/.env server/.env
+            echo "✅ Copied /root/.env to server/"
+          else
+            echo "⚠️  Warning: /root/.env not found"
+          fi
+
       - name: Install frontend dependencies
         run: npm ci
 
@@ -40,22 +56,6 @@ jobs:
           pm2 delete fanfantv-frontend || true
         continue-on-error: true
 
-      - name: Copy environment files
-        run: |
-          if [ -f /root/.env.local ]; then
-            cp /root/.env.local .env.local
-            echo "✅ Copied /root/.env.local to project"
-          else
-            echo "⚠️  Warning: /root/.env.local not found"
-          fi
-
-          if [ -f /root/.env ]; then
-            cp /root/.env server/.env
-            echo "✅ Copied /root/.env to server/"
-          else
-            echo "⚠️  Warning: /root/.env not found"
-          fi
-
       - name: Deploy backend
         working-directory: ./server
         run: |
@@ -74,7 +74,7 @@ jobs:
           sleep 5
           pm2 status
 
-          curl -f http://localhost:5000/api/health || exit 1
+          curl -f http://localhost:5001/api/health || exit 1
 
       - name: Send deployment notification
         if: always()
